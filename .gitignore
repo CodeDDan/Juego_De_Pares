@@ -1,0 +1,7 @@
+# .gitignore
+# Ignorar los siguientes .txt
+Recursos.txt
+# Ignorar las siguientes carpetas
+build/
+nbproject/
+src/Musica/
