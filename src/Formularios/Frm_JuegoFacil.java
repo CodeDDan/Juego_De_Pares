@@ -32,7 +32,7 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
     //Las direcciones que agrega el método getAbsolutePath() se agregan con (\).
     ObjetoImagen cartas = new ObjetoImagen("src\\Imagenes", "src\\Imagenes_Pick", "src\\Imagenes_Pick_Anim");
     ObjetoSonido sounds = new ObjetoSonido("src\\Sound_Effects");
-    ObjetoMusic musc = new ObjetoMusic("src\\Musica\\The Bone Train - Slynk.mp3");
+    ObjetoMusic musc = new ObjetoMusic("src\\Musica\\Lofi Study - FASSounds.mp3");
     //Variable para controlar el estado de los botones;
     private static boolean estadoBtnMax = true;
     private static boolean btnM = false, btnO = false;
@@ -97,7 +97,7 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
 
         //Reloj
         temporizador1.encenderReloj();
-        String cancion = "The Bone Train - Slynk";
+        String cancion = "Lofi Study - FASSounds";
         Frm_Notificacion noc = new Frm_Notificacion(this, Frm_Notificacion.Type.INFO, Frm_Notificacion.Location.BOT_LEFT, cancion);
         noc.showNotificacion();
 

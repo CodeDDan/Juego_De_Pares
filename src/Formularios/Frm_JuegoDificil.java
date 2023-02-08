@@ -32,7 +32,7 @@ public class Frm_JuegoDificil extends javax.swing.JFrame {
     //Las direcciones que agrega el método getAbsolutePath() se agregan con (\).
     ObjetoImagen cartas = new ObjetoImagen("src\\Imagenes", "src\\Imagenes_Pick", "src\\Imagenes_Pick_Anim");
     ObjetoSonido sounds = new ObjetoSonido("src\\Sound_Effects");
-    ObjetoMusic musc = new ObjetoMusic("src\\Musica\\Nothing Easy - Causmic.mp3");
+    ObjetoMusic musc = new ObjetoMusic("src\\Musica\\XXL - Prazkhanal.mp3");
     //Variable para controlar el estado de los botones;
     private boolean estadoBtnMax = true;
     private static boolean btnM = false, btnO = false;
@@ -99,7 +99,7 @@ public class Frm_JuegoDificil extends javax.swing.JFrame {
 
         //Reloj
         temporizador1.encenderReloj();
-        String cancion = "Nothing Easy - Causmic";
+        String cancion = "XXL - Prazkhanal";
         Frm_Notificacion noc = new Frm_Notificacion(this, Frm_Notificacion.Type.INFO, Frm_Notificacion.Location.BOT_LEFT, cancion);
         noc.showNotificacion();
 

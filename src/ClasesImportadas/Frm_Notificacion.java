@@ -56,7 +56,7 @@ public class Frm_Notificacion extends JComponent {
                 break;
             case INFO:
                 lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/IconoNota_50px.png"))); // NOI18N
-                lblTipo.setText("Youtube Audio Library");
+                lblTipo.setText("Pixabay");
                 break;
             case ALERT:
                 lblIcono.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/IconoInfo_50px.png"))); // NOI18N
