@@ -47,7 +47,7 @@ public class ObjetoContador extends JLabel {
     
     public void actualizarContador() {
         niv++;
-        int pos1 = niv / 10;
+        int pos1 = (niv / 10) % 10;
         int pos2 = niv % 10;
         lbl1.setIcon(icon[pos1]);
         lbl2.setIcon(icon[pos2]);

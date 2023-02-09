@@ -3,6 +3,7 @@ package Formularios;
 import Clases.DialogEspecial;
 import Clases.ObjetoImagen;
 import Clases.ObjetoMusic;
+import Clases.ObjetoPuntuacion;
 import Clases.ObjetoSonido;
 import ClasesImportadas.Frm_Notificacion;
 import java.awt.CardLayout;
@@ -19,6 +20,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JSlider;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ChangeEvent;
 
 /**
@@ -28,26 +30,28 @@ import javax.swing.event.ChangeEvent;
 
 public class Frm_JuegoMedio extends javax.swing.JFrame {
 
-    //Se agregaran las direcciones con el doble backslash (\\).
-    //Las direcciones que agrega el método getAbsolutePath() se agregan con (\).
+    // Se agregaran las direcciones con el doble backslash (\\).
+    // Las direcciones que agrega el método getAbsolutePath() se agregan con (\).
     ObjetoImagen cartas = new ObjetoImagen("src\\Imagenes", "src\\Imagenes_Pick", "src\\Imagenes_Pick_Anim");
     ObjetoSonido sounds = new ObjetoSonido("src\\Sound_Effects");
     ObjetoMusic musc = new ObjetoMusic("src\\Musica\\Modern Retro Funk - Saavane.mp3");
-    //Variable para controlar el estado de los botones;
+    // Variable para controlar el estado de los botones;
     private boolean estadoBtnMax = true;
     private static boolean btnM = false, btnO = false;
     private CardLayout mostrar;
-    //Creamos el valor aleatorio para los labels.
+    // Creamos el valor aleatorio para los labels.
     private final int numLabel[] = new int [10];
-    //{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
-    //Creamos nuestro contador de clics.
+    // {0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+    // Creamos nuestro contador de clics.
     private int clic = 0, contadorAciertos = 0;
-    //Creamos nuestro array booleano para saber el estado del clic del label.
+    // Creamos nuestro array booleano para saber el estado del clic del label.
     private final boolean estado [] = new boolean [10];
-    //{false, false, false, false, false, false, false, false, false, false};
-    //Para llamar al evento de clic de un botón.
-    //btnButton.PerformClick();
-    //Detener y resetear el reloj al salir del JFrame
+    // {false, false, false, false, false, false, false, false, false, false};
+    // Creamos el Dialog para la puntuación
+    ObjetoPuntuacion puntos;
+    // Para llamar al evento de clic de un botón.
+    // btnButton.PerformClick();
+    // Detener y resetear el reloj al salir del JFrame
     
     public Frm_JuegoMedio() {
         initComponents();
@@ -59,14 +63,16 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
         }
         musc.loop();
         mostrar = (CardLayout) panelPrincipal.getLayout();
-        //Se agregaran las vistas en el orden de los paneles
-        //Debemos colocar primero la vista del juego
+        // Se agregaran las vistas en el orden de los paneles
+        // Debemos colocar primero la vista del juego
         Panel_Menu ventanaMenu = new Panel_Menu(panelJuego.getColor1(), panelJuego.getColor2());
         Panel_Opciones ventanaOpcion = new Panel_Opciones(panelJuego.getColor1(), panelJuego.getColor2());
         panelPrincipal.add(panelJuego, "juego");
         panelPrincipal.add(ventanaMenu, "menu");
         panelPrincipal.add(ventanaOpcion, "opcion");
-        //Añadimos funcionalidad a los botones.
+        // Iniciamos el ObjetoPuntuacion
+        puntos = new ObjetoPuntuacion(this, ObjetoPuntuacion.TIPO.MEDIO, panelJuego);
+        // Añadimos funcionalidad a los botones.
         ventanaMenu.getBtnReanudar().addMouseListener(new MouseAdapter() {
             
             @Override
@@ -103,14 +109,14 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
         Frm_Notificacion noc = new Frm_Notificacion(this, Frm_Notificacion.Type.INFO, Frm_Notificacion.Location.BOT_LEFT, cancion);
         noc.showNotificacion();
         
-        //Métodos para controlar el volumen
+        // Métodos para controlar el volumen
         
         JSlider volumenMusica = ventanaOpcion.getSliderMusica();
         JSlider volumenEfectos = ventanaOpcion.getSliderEfectos();
         JCheckBox checkMusica = ventanaOpcion.getCheckBoxMusica();
         JCheckBox checkEfectos = ventanaOpcion.getCheckBoxEfectos();
         
-        //Valores iniciales
+        // Valores iniciales
         
         /*
         Existe un problema al intentar inicializar los valores de los sliders,
@@ -121,7 +127,7 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
         */
         musc.getMediaPlayer().setVolume(0.5);
         sounds.setVolumen(0.5);
-        //Eventos
+        // Eventos
         /*
         Se debe dividir para 100, dado que el método setVolumen
         admite valores entre 0.0 y 1.0.
@@ -169,39 +175,46 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
             });
         }
         renewGame();
+        // Se crea el objeto puntuación cuando el JFrame es visible.
+        puntos.situarDialog(panelPrincipal);
     }
 
     private void renewGame() {
-        //Debe iniciar en 1, la primera posición del array solo contiene el string de la carpeta
+        /*
+        La visibilidad se pone en true en el método main del JFrame, la necesitamos
+        en true desde antes para situar nuestra puntuación.
+        */
+        this.setVisible(true);
+        // Debe iniciar en 1, la primera posición del array solo contiene el string de la carpeta
         int k = 1;
-        //Se deben agregar los sonidos con las barras invertidas
+        // Se deben agregar los sonidos con las barras invertidas
         sounds.usarSonido("src\\Sound_Effects\\sound_shuffle.mp3");
         int ale[] = cartas.mezclar();
         JLabel [] labels = {lbl1, lbl2, lbl3, lbl4, lbl5, lbl6, lbl7, lbl8, lbl9, lbl10};
-        //Controlamos que existan las cartas
+        // Controlamos que existan las cartas
         if(cartas.getDirBase().size() <= 6) {
             JOptionPane.showMessageDialog(null, "No existen imágenes suficientes");
             System.exit(0);
         }
         
-        //Aleatorizamos el array de jlabels inicial
+        // Aleatorizamos el array de jlabels inicial
         for(int i = numLabel.length - 1; i > 0; i--) {
-            //Calculamos un índice aleatorio dentro del rango permitido
+            // Calculamos un índice aleatorio dentro del rango permitido
             int shuffled_index = (int)Math.floor(Math.random() * (i + 1));
-            //Guardamos el elemento que estamos iterando
+            // Guardamos el elemento que estamos iterando
             int tmp = numLabel[i];
-            //Asignamos el elemento aleatorio al índice iterado
+            // Asignamos el elemento aleatorio al índice iterado
             numLabel[i] = numLabel[shuffled_index];
-            //Asignamos el elemento iterado al índice aleatorio
+            // Asignamos el elemento iterado al índice aleatorio
             numLabel[shuffled_index] = tmp;
         }
         
-        //Booleano para poner 2 copias de la misma carta
+        // Booleano para poner 2 copias de la misma carta
         boolean cond = true;
         for (int i = 0; i < labels.length; i++) {
             ImageIcon icon = new ImageIcon(cartas.getDirBase().get(ale[k]));
             labels[numLabel[i]].setIcon(icon);
-            //Controlamos la condición para que se pongan 2 copias de la misma carta
+            // Controlamos la condición para que se pongan 2 copias de la misma carta
             if(cond) {
                 cond = false;
             }else {
@@ -226,11 +239,11 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
                 public void mouseClicked(MouseEvent me) {
                     String selec;
                     if(estado[v] && clic == 1) {
-                        //De momento no hacemos nada
+                        // De momento no hacemos nada
                         selec = cartas.recuperarCarta(lbl.getIcon().toString());
-                        //Formamos el String a la dirección de la carpeta
+                        // Formamos el String a la dirección de la carpeta
                         selec = "src\\Imagenes\\" + selec + ".png";
-                        //Cargamos la imagen
+                        // Cargamos la imagen
                         ImageIcon icon = new ImageIcon(selec);
                         lbl.setIcon(icon);
                         estado[v] = false;
@@ -240,9 +253,9 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
                         if (clic == 1) {
                             sounds.usarSonido("src\\Sound_Effects\\sound_click.mp3");
                             selec = cartas.recuperarCarta(lbl.getIcon().toString());
-                            //Formamos el String a la dirección de la carpeta
+                            // Formamos el String a la dirección de la carpeta
                             selec = "src\\Imagenes_Pick\\" + selec + ".png";
-                            //Cargamos la imagen
+                            // Cargamos la imagen
                             ImageIcon icon = new ImageIcon(selec);
                             lbl.setIcon(icon);
                             estado[v] = true;
@@ -285,14 +298,14 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
                 public void mouseEntered(MouseEvent me) {
                     String selec;
                     if (estado[v]) {
-                        //Por el momento no hace nada
+                        // Por el momento no hace nada
                     }else {
                         selec = cartas.recuperarCarta(lbl.getIcon().toString());
-                        //Formamos el String a la dirección de la carpeta
+                        // Formamos el String a la dirección de la carpeta
                         selec = "src\\Imagenes_Pick_Anim\\" + selec + ".gif";
-                        //Cargamos el gif
+                        // Cargamos el gif
                         ImageIcon icon = new ImageIcon(selec);
-                        //Refrescamos el gif
+                        // Refrescamos el gif
                         Image img = icon.getImage();
                         img.flush();
                         lbl.setIcon(icon);
@@ -303,12 +316,12 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
                 public void mouseExited(MouseEvent me) {
                     String selec;
                     if (estado[v]) {
-                        //Por el momento no hace nada
+                        // Por el momento no hace nada
                     }else {
                         selec = cartas.recuperarCarta(lbl.getIcon().toString());
-                        //Formamos el String a la dirección de la carpeta
+                        // Formamos el String a la dirección de la carpeta
                         selec = "src\\Imagenes\\" + selec + ".png";
-                        //Cargamos la imagen
+                        // Cargamos la imagen
                         ImageIcon icon = new ImageIcon(selec);
                         lbl.setIcon(icon);
                     }
@@ -317,6 +330,7 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
             temp++;
         }
     }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -541,7 +555,7 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
 
     private void btnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMenuActionPerformed
         btnM = !btnM;
-        //Si el botón esta prendido lo apagamos
+        // Si el botón esta prendido lo apagamos
         if (btnO) {
             btnO = !btnO;
         }
@@ -559,7 +573,7 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
 
     private void btnOpcionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionActionPerformed
         btnO = !btnO;
-        //Si el botón esta prendido lo apagamos
+        // Si el botón esta prendido lo apagamos
         if (btnM) {
             btnM = !btnM;
         }
@@ -575,19 +589,16 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
     }//GEN-LAST:event_btnOpcionActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        // TODO add your handling code here:
         System.exit(0);
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnAyudaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAyudaActionPerformed
-        // TODO add your handling code here:
         String mensajeAyuda = "Empareja cartas con igual color/diseño";
         Frm_Notificacion ayud = new Frm_Notificacion(this, Frm_Notificacion.Type.ALERT, Frm_Notificacion.Location.TOP_RIGHT, mensajeAyuda);
         ayud.showNotificacion();
     }//GEN-LAST:event_btnAyudaActionPerformed
 
     private void btnMaximizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMaximizarActionPerformed
-        // TODO add your handling code here:
         if (estadoBtnMax) {
             this.setExtendedState(JFrame.MAXIMIZED_BOTH);
             ImageIcon min = new ImageIcon("src\\Iconos\\IconoMaximizar_50px.png");
@@ -600,11 +611,18 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
             estadoBtnMax = true;
         }
         repaint();
+        /*
+        InvokeLater nos permite realizar la acción cuando la maximización del
+        formulario se ha completado, garantizando que nuestro método para situar
+        no tome valores erroneos.
+        */
+        SwingUtilities.invokeLater(() -> {
+            puntos.situarDialog(panelPrincipal);
+        });
     }//GEN-LAST:event_btnMaximizarActionPerformed
 
     private void btnMinimizarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMinimizarActionPerformed
-        // TODO add your handling code here:
-        //Si se usa setExtendedState vuelve al tamaño inicial
+        // Si se usa setExtendedState vuelve al tamaño inicial
         this.setState(JFrame.ICONIFIED);
     }//GEN-LAST:event_btnMinimizarActionPerformed
 
@@ -627,18 +645,21 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
             sounds.usarSonido("src\\Sound_Effects\\sound_error.mp3");
             return false;
         }
+        // Acciones al acertar 
         sounds.usarSonido("src\\Sound_Effects\\sound_correcto.mp3");
+        // Calculamos los puntos
+        puntos.actualizarPuntaje();
         selec = iconA;
-        //Formamos el String a la dirección de la carpeta
+        // Formamos el String a la dirección de la carpeta
         selec = "src\\Imagenes_Correcto\\" + selec + ".gif";
-        //Cargamos el gif
+        // Cargamos el gif
         ImageIcon icon = new ImageIcon(selec);
-        //Refrescamos el gif
+        // Refrescamos el gif
         Image im = icon.getImage();
         im.flush();
         lbl1.setIcon(icon);
         lbl2.setIcon(icon);
-        //Se debe separar la eliminación de los mouseListeners
+        // Se debe separar la eliminación de los mouseListeners
         for (MouseListener ml : lbl1.getMouseListeners()) {
             lbl1.removeMouseListener(ml);
         }
@@ -648,7 +669,7 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
         return true;
     }
     
-    //Aquí se cambia la cantidad de aciertos necesarios
+    // Aquí se cambia la cantidad de aciertos necesarios
     private void comprobarVictoria(int cont) {
         if (cont >= 5) {
             temporizador1.apagarReloj();
