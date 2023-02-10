@@ -37,7 +37,7 @@ public class Conexion {
     USUARIO | PARTIDA | NIVEL
      */
     
-    public enum selecionTabla {
+    public enum Tabla {
         USUARIO, PARTIDA, NIVEL
     }
 
@@ -52,7 +52,7 @@ public class Conexion {
      * @return Índice máximo de la llave primaria
      */
     
-    public int obtenerIntPK(selecionTabla tabla) {
+    public int obtenerIntPK(Tabla tabla) {
         int id = 0;
         String consulta;
         switch (tabla) {
@@ -105,12 +105,19 @@ public class Conexion {
      */
     
     public void registrarUsuario(String usu_Alias, String usu_Nombre, String usu_Apellido, String usu_Correo, String usu_Password) {
-        int usu_Id = obtenerIntPK(selecionTabla.USUARIO) + 1;
-        String consulta = "INSERT INTO TBL_USUARIO (USU_ID, USU_ALIAS, USU_NOMBRE, USU_APELLIDO, USU_CORREO, USU_PASSWORD) \n"
-                + "VALUES (" + usu_Id + ", '" + usu_Alias + "', '" + usu_Nombre + "', '" + usu_Apellido + "', '" + usu_Correo + "', '" + usu_Password + "')";
+        int usu_Id = obtenerIntPK(Tabla.USUARIO) + 1;
+        String consulta = "INSERT INTO TBL_USUARIO (USU_ID, USU_ALIAS, USU_NOMBRE, USU_APELLIDO, USU_CORREO, USU_PASSWORD)\n" 
+                + "VALUES (?, ?, ?, ?, ?, ?)";
         System.out.println(consulta);
         try {
+            // Método de protección "Consultas preparadas"
             PreparedStatement ps = conexion.prepareStatement(consulta);
+            ps.setString(1, String.valueOf(usu_Id));
+            ps.setString(2, usu_Alias);
+            ps.setString(3, usu_Nombre);
+            ps.setString(4, usu_Apellido);
+            ps.setString(5, usu_Correo);
+            ps.setString(6, usu_Password);
             ps.execute();
             JOptionPane.showMessageDialog(null, "Usuario ingresado");
         } catch (SQLException ex) {
@@ -131,15 +138,18 @@ public class Conexion {
      */
     
     public boolean validarUsuario(String usuario, String password) {
-        String consulta = "SELECT u.USU_ALIAS, u.USU_PASSWORD\n"
-                + "FROM TBL_USUARIO u\n"
-                + "WHERE u.USU_ALIAS = '" + usuario + "' AND u.USU_PASSWORD = '" + password + "'";
+        
+        String consulta = "SELECT u.USU_ALIAS, u.USU_PASSWORD\n" 
+                + "FROM TBL_USUARIO u\n" 
+                + "WHERE u.USU_ALIAS = ? AND u.USU_PASSWORD = ?";
         System.out.println(consulta);
         try {
-            Statement st = conexion.createStatement();
-            ResultSet rs = st.executeQuery(consulta);
-            //Debemos guardar en un vector todos los datos de haber varios
-            //La consulta devuelve el último
+            // Utilizamos el método de protección "Consultas preparadas"
+            PreparedStatement ps = conexion.prepareStatement(consulta);
+            ps.setString(1, usuario);
+            ps.setString(2, password);
+            ResultSet rs = ps.executeQuery();
+            // La consulta se situa en la cabecera, de haber 1 resultado existirá rs.next()
             if (rs.next() == true) {
                 return true;
             }
