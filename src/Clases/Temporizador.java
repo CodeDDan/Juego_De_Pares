@@ -7,23 +7,51 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
-/** 
+/**
  * @author Daniel Sánchez <daniel_s2604@hotmail.com>
  */
-
-public class Temporizador extends JLabel{
+public class Temporizador extends JLabel {
 
     private int seg = 0, segD = 0, min = 0, minD = 0;
+    private int segundosTotales = 0;
     private JLabel lbl1, lbl2, lbl3, lbl4, lblDiv;
-    private final ImageIcon icon [] = new ImageIcon[11];
+    private final ImageIcon icon[] = new ImageIcon[12];
     private int contador = 0;
     private boolean encendido;
+    private Dificultad dificultad;
     private final ScheduledExecutorService tarea = Executors.newSingleThreadScheduledExecutor();
-    
-    public Temporizador() {
+
+    public int getSegundosTotales() {
+        return segundosTotales;
+    }
+
+    public void setSegundosTotales(int segundosTotales) {
+        this.segundosTotales = segundosTotales;
+    }
+
+    public enum Dificultad {
+        FACIL, MEDIO, DIFICIL
+    }
+
+    public Temporizador(Dificultad dificultad) {
+        this.dificultad = dificultad;
+        // Aquí se determinan los segundos totales de partida por dificultad
+        switch (dificultad) {
+            case FACIL:
+                segundosTotales = 420;
+                break;
+            case MEDIO:
+                segundosTotales = 300;
+                break;
+            case DIFICIL:
+                segundosTotales = 180;
+                break;
+            default:
+                break;
+        }
         init();
     }
-    
+
     private void init() {
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         icon[0] = new ImageIcon("src\\Iconos\\Icono0_50px.png");
@@ -36,73 +64,87 @@ public class Temporizador extends JLabel{
         icon[7] = new ImageIcon("src\\Iconos\\Icono7_50px.png");
         icon[8] = new ImageIcon("src\\Iconos\\Icono8_50px.png");
         icon[9] = new ImageIcon("src\\Iconos\\Icono9_50px.png");
-        icon[10] = new ImageIcon("src\\Iconos\\IconoDosPuntos_50px.png");
-        lbl1 = new JLabel(icon[0]);
-        lbl2 = new JLabel(icon[0]);
-        lbl3 = new JLabel(icon[0]);
-        lbl4 = new JLabel(icon[0]);
-        lblDiv = new JLabel(icon[10]);
+        // Cuando la división de exactamente 10
+        icon[10] = new ImageIcon("src\\Iconos\\Icono0_50px.png");
+        icon[11] = new ImageIcon("src\\Iconos\\IconoDosPuntos_50px.png");
+        minD = segundosTotales / 600;
+        min = segundosTotales / 60;
+        segD = (segundosTotales % 60) /10;
+        seg = (segundosTotales % 60) % 10;
+        lbl1 = new JLabel(icon[minD]);
+        lbl2 = new JLabel(icon[min]);
+        lbl3 = new JLabel(icon[segD]);
+        lbl4 = new JLabel(icon[seg]);
+        lblDiv = new JLabel(icon[11]);
         this.add(lbl1);
         this.add(lbl2);
         this.add(lblDiv);
         this.add(lbl3);
         this.add(lbl4);
         tarea.scheduleAtFixedRate(() -> {
-            //System.out.println(contador);
-            if (contador >= 1000 && seg < 9) {
-                seg++;
-                System.out.println(seg);
-                Temporizador.this.lbl4.setIcon(icon[seg]);
+            if (contador >= 1000 ) {
+                segundosTotales -= 1;
+                System.out.println(segundosTotales);
+                actualizarIconos();
                 contador = 0;
-            } else if (contador >= 1000 && segD < 5) {
-                segD++;
-                Temporizador.this.lbl3.setIcon(icon[segD]);
-                Temporizador.this.lbl4.setIcon(icon[0]);
-                seg = 0;
-                contador = 0;
-            } else if (contador >= 1000 && min < 9) {
-                min++;
-                Temporizador.this.lbl2.setIcon(icon[min]);
-                Temporizador.this.lbl3.setIcon(icon[0]);
-                Temporizador.this.lbl4.setIcon(icon[0]);
-                seg = 0;
-                segD = 0;
-                contador = 0;
-            } else if (contador >= 1000 && minD < 5) {
-                minD++;
-                Temporizador.this.lbl1.setIcon(icon[minD]);
-                Temporizador.this.lbl2.setIcon(icon[0]);
-                Temporizador.this.lbl3.setIcon(icon[0]);
-                Temporizador.this.lbl4.setIcon(icon[0]);
-                seg = 0;
-                segD = 0;
-                min = 0;
-                contador = 0;
-            } else if (contador >= 1000 && minD >= 5) {
-                resetear();
             } 
-            //this.lbl4.setIcon(icon[contador]);
             if (encendido) {
                 contador += 100;
             }
-            
         }, 0, 100, TimeUnit.MILLISECONDS);
     }
     
-    public void resetear(){
-        lbl1.setIcon(icon[0]);
-        lbl2.setIcon(icon[0]);
-        lbl3.setIcon(icon[0]);
-        lbl4.setIcon(icon[0]);
-        contador = 0; seg = 0; segD = 0; min = 0; minD = 0;
+    private void actualizarIconos() {
+        minD = segundosTotales / 600;
+        min = segundosTotales / 60;
+        segD = (segundosTotales % 60) /10;
+        seg = (segundosTotales % 60) % 10;
+        lbl1.setIcon(icon[minD]);
+        lbl2.setIcon(icon[min]);
+        lbl3.setIcon(icon[segD]);
+        lbl4.setIcon(icon[seg]);
+    }
+
+    public void resetear() {
+        switch (dificultad) {
+            case FACIL:
+                segundosTotales = 420;
+                break;
+            case MEDIO:
+                segundosTotales = 300;
+                break;
+            case DIFICIL:
+                segundosTotales = 180;
+                break;
+            default:
+                break;
+        }
+        actualizarIconos();
+    }
+
+    public void aumentarTiempo() {
+        switch (dificultad) {
+            case FACIL:
+                segundosTotales += 2;
+                break;
+            case MEDIO:
+                segundosTotales += 4;
+                break;
+            case DIFICIL:
+                segundosTotales += 5;
+                break;
+            default:
+                break;
+        }
+        actualizarIconos();
     }
     
     public void apagarReloj() {
         encendido = false;
     }
-    
+
     public void encenderReloj() {
         encendido = true;
     }
-    
+
 }

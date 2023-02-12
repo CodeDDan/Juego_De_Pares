@@ -59,26 +59,24 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="1" attributes="0">
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnMenu" min="-2" pref="50" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnOpcion" min="-2" pref="50" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnBack" min="-2" pref="50" max="-2" attributes="0"/>
-                      <EmptySpace pref="35" max="32767" attributes="0"/>
-                      <Component id="temporizador1" min="-2" pref="240" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="obContador" min="-2" pref="260" max="-2" attributes="0"/>
-                      <EmptySpace pref="51" max="32767" attributes="0"/>
+                      <EmptySpace pref="337" max="32767" attributes="0"/>
+                      <Component id="obContador" min="-2" pref="256" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="btnAyuda" min="-2" pref="50" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnMinimizar" min="-2" pref="50" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnMaximizar" min="-2" pref="50" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="btnSalir" min="-2" pref="50" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -86,20 +84,22 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" attributes="0">
                       <EmptySpace max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="btnBack" min="-2" pref="50" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="102" attributes="0">
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="btnSalir" min="-2" pref="50" max="-2" attributes="0"/>
+                                  <Group type="103" groupAlignment="0" attributes="0">
+                                      <Component id="btnOpcion" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <Component id="btnMenu" min="-2" pref="50" max="-2" attributes="0"/>
+                                      <Component id="btnBack" alignment="0" min="-2" pref="50" max="-2" attributes="0"/>
+                                  </Group>
                                   <Component id="btnMaximizar" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
                                   <Component id="btnMinimizar" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
                                   <Component id="btnAyuda" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="btnMenu" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="btnOpcion" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
-                                  <Component id="btnSalir" alignment="1" min="-2" pref="50" max="-2" attributes="0"/>
                               </Group>
-                              <Component id="temporizador1" alignment="0" max="32767" attributes="0"/>
-                              <Component id="obContador" alignment="0" max="32767" attributes="0"/>
+                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                           </Group>
+                          <Component id="obContador" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -184,8 +184,6 @@
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnMinimizarActionPerformed"/>
               </Events>
-            </Component>
-            <Component class="Clases.Temporizador" name="temporizador1">
             </Component>
             <Component class="Clases.ObjetoContador" name="obContador">
             </Component>

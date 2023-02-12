@@ -5,6 +5,8 @@ import Clases.ObjetoImagen;
 import Clases.ObjetoMusic;
 import Clases.ObjetoPuntuacion;
 import Clases.ObjetoSonido;
+import Clases.Temporizador;
+import Clases.Temporizador.Dificultad;
 import ClasesImportadas.Frm_Notificacion;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -21,6 +23,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JSlider;
 import javax.swing.SwingUtilities;
+import javax.swing.Timer;
 import javax.swing.event.ChangeEvent;
 
 /**
@@ -52,9 +55,32 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
     // Para llamar al evento de clic de un botón.
     // btnButton.PerformClick();
     // Detener y resetear el reloj al salir del JFrame
+    // Creamos el temporizador
+    private Temporizador temporizador1;
+    // Creamos el timer que controlará el cierre del JFrame
+    Timer timer;
     
     public Frm_JuegoMedio() {
         initComponents();
+        // Iniciamos el temporizador y lo agregamos
+        temporizador1 = new Temporizador(Dificultad.MEDIO);
+        panelOpciones.add(temporizador1);
+        temporizador1.setBounds(200, 13, 256, 50);
+        // Agregamos un timer para comprobar si el tiempo finalizó
+        timer = new Timer(1000, (ActionEvent e) -> {
+            if(temporizador1.getSegundosTotales() <= 0) {
+                temporizador1.apagarReloj();
+                temporizador1 = null;
+                // Incluir aquí algún Dialog de fin de juego.
+                Frm_Puntaje puntuacion = new Frm_Puntaje();
+                musc.getMediaPlayer().stop();
+                puntuacion.setVisible(true);
+                this.dispose();
+                timer.stop();
+            }
+        });
+        // Iniciamos el timer
+        timer.start();
         for (int i = 0; i < numLabel.length; i++) {
             numLabel[i] = i;
         }
@@ -343,7 +369,6 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
         btnAyuda = new javax.swing.JButton();
         btnMaximizar = new javax.swing.JButton();
         btnMinimizar = new javax.swing.JButton();
-        temporizador1 = new Clases.Temporizador();
         obContador = new Clases.ObjetoContador();
         btnBack = new javax.swing.JButton();
         panelPrincipal = new javax.swing.JPanel();
@@ -429,18 +454,16 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
         panelOpciones.setLayout(panelOpcionesLayout);
         panelOpcionesLayout.setHorizontalGroup(
             panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelOpcionesLayout.createSequentialGroup()
+            .addGroup(panelOpcionesLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnOpcion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 35, Short.MAX_VALUE)
-                .addComponent(temporizador1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(obContador, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 337, Short.MAX_VALUE)
+                .addComponent(obContador, javax.swing.GroupLayout.PREFERRED_SIZE, 256, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(btnAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -454,18 +477,19 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
             panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelOpcionesLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelOpcionesLayout.createSequentialGroup()
                         .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(panelOpcionesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(btnOpcion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(btnMaximizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnOpcion, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(temporizador1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(obContador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(btnAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(obContador, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -628,12 +652,20 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         DialogEspecial dg = new DialogEspecial(3);
+        temporizador1.apagarReloj();
         if (!dg.isValor()) {
+            temporizador1.encenderReloj();
             return;
         }
         Frm_SeleccionD selecD = new Frm_SeleccionD();
         selecD.setVisible(true);
         musc.getMediaPlayer().stop();
+        /*
+        Asignamos el valor de null a nuestro temporizador para que el 
+        garbage collector se encarge de liberar recursos del objeto.
+        No ocurre inmediatamente
+        */
+        temporizador1 = null;
         this.dispose();
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -675,10 +707,21 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
             temporizador1.apagarReloj();
             DialogEspecial dig = new DialogEspecial(2);
             if (!dig.isValor()) {
-                System.exit(0);
+                musc.getMediaPlayer().stop();
+                Frm_SeleccionD selecD = new Frm_SeleccionD();
+                /*
+                Asignamos el valor de null a nuestro temporizador para que el 
+                garbage collector se encarge de liberar recursos del objeto.
+                No ocurre inmediatamente
+                */
+                temporizador1 = null;
+                this.dispose();
+                selecD.setVisible(true);
+                return;
             }
             this.renewGame();
             obContador.actualizarContador();
+            temporizador1.aumentarTiempo();
             temporizador1.encenderReloj();
             contadorAciertos = 0;
             System.out.println("El tamaño es: " + cartas.getDirBase().size());
@@ -738,6 +781,5 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
     private Clases.PanelGradiente panelOpciones;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JPanel rootPanel;
-    private Clases.Temporizador temporizador1;
     // End of variables declaration//GEN-END:variables
 }
