@@ -70,13 +70,13 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
         timer = new Timer(1000, (ActionEvent e) -> {
             if(temporizador1.getSegundosTotales() <= 0) {
                 temporizador1.apagarReloj();
-                temporizador1 = null;
                 // Incluir aquí algún Dialog de fin de juego.
                 Frm_Puntaje puntuacion = new Frm_Puntaje();
                 musc.getMediaPlayer().stop();
                 puntuacion.setVisible(true);
                 this.dispose();
                 timer.stop();
+                temporizador1 = null;
             }
         });
         // Iniciamos el timer
@@ -660,6 +660,7 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
         Frm_SeleccionD selecD = new Frm_SeleccionD();
         selecD.setVisible(true);
         musc.getMediaPlayer().stop();
+        timer.stop();
         /*
         Asignamos el valor de null a nuestro temporizador para que el 
         garbage collector se encarge de liberar recursos del objeto.
@@ -709,6 +710,7 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
             if (!dig.isValor()) {
                 musc.getMediaPlayer().stop();
                 Frm_SeleccionD selecD = new Frm_SeleccionD();
+                timer.stop();
                 /*
                 Asignamos el valor de null a nuestro temporizador para que el 
                 garbage collector se encarge de liberar recursos del objeto.
