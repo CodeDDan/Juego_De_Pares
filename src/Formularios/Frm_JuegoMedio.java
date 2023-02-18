@@ -2,6 +2,7 @@ package Formularios;
 
 import Clases.DialogEspecial;
 import Clases.ObjetoImagen;
+import Clases.ObjetoImagen.CARPETA;
 import Clases.ObjetoMusic;
 import Clases.ObjetoPuntuacion;
 import Clases.ObjetoSonido;
@@ -33,9 +34,7 @@ import javax.swing.event.ChangeEvent;
 
 public class Frm_JuegoMedio extends javax.swing.JFrame {
 
-    // Se agregaran las direcciones con el doble backslash (\\).
-    // Las direcciones que agrega el método getAbsolutePath() se agregan con (\).
-    ObjetoImagen cartas = new ObjetoImagen("src\\Imagenes", "src\\Imagenes_Pick", "src\\Imagenes_Pick_Anim");
+    ObjetoImagen cartas = new ObjetoImagen(ObjetoImagen.MODELO.CARTAS);
     ObjetoSonido sounds = new ObjetoSonido("src\\Sound_Effects");
     ObjetoMusic musc = new ObjetoMusic("src\\Musica\\Modern Retro Funk - Saavane.mp3");
     // Variable para controlar el estado de los botones;
@@ -265,10 +264,10 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
                 public void mouseClicked(MouseEvent me) {
                     String selec;
                     if(estado[v] && clic == 1) {
-                        // De momento no hacemos nada
-                        selec = cartas.recuperarCarta(lbl.getIcon().toString());
-                        // Formamos el String a la dirección de la carpeta
-                        selec = "src\\Imagenes\\" + selec + ".png";
+                        // Obtenemos el indice de la imagen en nuestro array 
+                        int indice = cartas.obtenerIndiceImagen(CARPETA.PICK, lbl.getIcon().toString());
+                        // Dado que las carpetas contienen a las imágenes en el mismo orden, solo llamamos a la carpeta.
+                        selec = cartas.getDirBase().get(indice);
                         // Cargamos la imagen
                         ImageIcon icon = new ImageIcon(selec);
                         lbl.setIcon(icon);
@@ -278,9 +277,14 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
                         clic++;
                         if (clic == 1) {
                             sounds.usarSonido("src\\Sound_Effects\\sound_click.mp3");
-                            selec = cartas.recuperarCarta(lbl.getIcon().toString());
-                            // Formamos el String a la dirección de la carpeta
-                            selec = "src\\Imagenes_Pick\\" + selec + ".png";
+                            // Obtenemos el indice de la imagen en nuestro array 
+                            int indice = cartas.obtenerIndiceImagen(CARPETA.A_PICK, lbl.getIcon().toString());
+                            // Si el indice es -1, es porque el usuario quito la selección.
+                            if (indice == -1) {
+                                indice = cartas.obtenerIndiceImagen(CARPETA.BASE, lbl.getIcon().toString());
+                            }
+                            // Dado que las carpetas contienen a las imágenes en el mismo orden, solo llamamos a la carpeta.
+                            selec = cartas.getDirPick().get(indice);
                             // Cargamos la imagen
                             ImageIcon icon = new ImageIcon(selec);
                             lbl.setIcon(icon);
@@ -326,9 +330,10 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
                     if (estado[v]) {
                         // Por el momento no hace nada
                     }else {
-                        selec = cartas.recuperarCarta(lbl.getIcon().toString());
-                        // Formamos el String a la dirección de la carpeta
-                        selec = "src\\Imagenes_Pick_Anim\\" + selec + ".gif";
+                        // Obtenemos el indice de la imagen en nuestro array 
+                        int indice = cartas.obtenerIndiceImagen(CARPETA.BASE, lbl.getIcon().toString());
+                        // Dado que las carpetas contienen a las imágenes en el mismo orden, solo llamamos a la carpeta.
+                        selec = cartas.getDirPickAnim().get(indice);
                         // Cargamos el gif
                         ImageIcon icon = new ImageIcon(selec);
                         // Refrescamos el gif
@@ -344,9 +349,14 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
                     if (estado[v]) {
                         // Por el momento no hace nada
                     }else {
-                        selec = cartas.recuperarCarta(lbl.getIcon().toString());
-                        // Formamos el String a la dirección de la carpeta
-                        selec = "src\\Imagenes\\" + selec + ".png";
+                        // Obtenemos el indice de la imagen en nuestro array 
+                        int indice = cartas.obtenerIndiceImagen(CARPETA.A_PICK, lbl.getIcon().toString());
+                        // Si el usuario da doble click y regresa la imagen a su estado base.
+                        if (indice == -1) {
+                            indice = cartas.obtenerIndiceImagen(CARPETA.BASE, lbl.getIcon().toString());
+                        }
+                        // Dado que las carpetas contienen a las imágenes en el mismo orden, solo llamamos a la carpeta.
+                        selec = cartas.getDirBase().get(indice);
                         // Cargamos la imagen
                         ImageIcon icon = new ImageIcon(selec);
                         lbl.setIcon(icon);
@@ -500,71 +510,71 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
         panelJuego.setColor1(new java.awt.Color(20, 10, 58));
         panelJuego.setColor2(new java.awt.Color(43, 27, 104));
 
-        lbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Clovers_A_white.png"))); // NOI18N
+        lbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Clovers_A_white.png"))); // NOI18N
+        lbl2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Clovers_A_white.png"))); // NOI18N
+        lbl3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Clovers_A_white.png"))); // NOI18N
+        lbl4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Clovers_A_white.png"))); // NOI18N
+        lbl5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Clovers_A_white.png"))); // NOI18N
+        lbl6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Clovers_A_white.png"))); // NOI18N
+        lbl7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Clovers_A_white.png"))); // NOI18N
+        lbl8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Clovers_A_white.png"))); // NOI18N
+        lbl9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Clovers_A_white.png"))); // NOI18N
+        lbl10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
         javax.swing.GroupLayout panelJuegoLayout = new javax.swing.GroupLayout(panelJuego);
         panelJuego.setLayout(panelJuegoLayout);
         panelJuegoLayout.setHorizontalGroup(
             panelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelJuegoLayout.createSequentialGroup()
-                .addContainerGap(74, Short.MAX_VALUE)
+                .addContainerGap(134, Short.MAX_VALUE)
                 .addGroup(panelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl1)
                     .addComponent(lbl6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
                 .addGroup(panelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl2)
                     .addComponent(lbl10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
                 .addGroup(panelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl3)
                     .addComponent(lbl7))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
                 .addGroup(panelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl8)
                     .addComponent(lbl4))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 128, Short.MAX_VALUE)
                 .addGroup(panelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl5)
                     .addComponent(lbl9))
-                .addContainerGap(74, Short.MAX_VALUE))
+                .addContainerGap(134, Short.MAX_VALUE))
         );
         panelJuegoLayout.setVerticalGroup(
             panelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelJuegoLayout.createSequentialGroup()
-                .addContainerGap(149, Short.MAX_VALUE)
+                .addContainerGap(205, Short.MAX_VALUE)
                 .addGroup(panelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lbl1)
                     .addComponent(lbl4)
                     .addComponent(lbl2)
                     .addComponent(lbl3)
                     .addComponent(lbl5))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 182, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 238, Short.MAX_VALUE)
                 .addGroup(panelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(lbl6)
                     .addComponent(lbl7)
                     .addComponent(lbl8)
                     .addComponent(lbl9)
                     .addComponent(lbl10))
-                .addContainerGap(149, Short.MAX_VALUE))
+                .addContainerGap(207, Short.MAX_VALUE))
         );
 
         panelPrincipal.add(panelJuego, "card3");
@@ -682,9 +692,14 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
         sounds.usarSonido("src\\Sound_Effects\\sound_correcto.mp3");
         // Calculamos los puntos
         puntos.actualizarPuntaje();
-        selec = iconA;
-        // Formamos el String a la dirección de la carpeta
-        selec = "src\\Imagenes_Correcto\\" + selec + ".gif";
+        // Obtenemos el indice de la imagen en nuestro array 
+        int indice = cartas.obtenerIndiceImagen(CARPETA.PICK, lbl1.getIcon().toString());
+        // Si el indice es -1, es porque esta en la animación
+        if (indice == -1 ) {
+            indice = cartas.obtenerIndiceImagen(CARPETA.A_PICK, lbl1.getIcon().toString());
+        }
+        // Dado que las carpetas contienen a las imágenes en el mismo orden, solo llamamos a la carpeta.
+        selec = cartas.getDirPickCorrect().get(indice);
         // Cargamos el gif
         ImageIcon icon = new ImageIcon(selec);
         // Refrescamos el gif

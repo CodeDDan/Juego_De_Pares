@@ -2,6 +2,7 @@ package Formularios;
 
 import Clases.DialogEspecial;
 import Clases.ObjetoImagen;
+import Clases.ObjetoImagen.CARPETA;
 import Clases.ObjetoMusic;
 import Clases.ObjetoPuntuacion;
 import Clases.ObjetoSonido;
@@ -33,9 +34,7 @@ import javax.swing.event.ChangeEvent;
 
 public class Frm_JuegoFacil extends javax.swing.JFrame {
 
-    // Se agregaran las direcciones con el doble backslash (\\).
-    // Las direcciones que agrega el método getAbsolutePath() se agregan con (\).
-    ObjetoImagen cartas = new ObjetoImagen("src\\Imagenes", "src\\Imagenes_Pick", "src\\Imagenes_Pick_Anim");
+    ObjetoImagen cartas = new ObjetoImagen(ObjetoImagen.MODELO.CARTAS);
     ObjetoSonido sounds = new ObjetoSonido("src\\Sound_Effects");
     ObjetoMusic musc = new ObjetoMusic("src\\Musica\\Lofi Study - FASSounds.mp3");
     // Variable para controlar el estado de los botones;
@@ -125,10 +124,10 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
                 btnM = false;
                 btnO = true;
             }
-
         });
 
         // Reloj
+        
         temporizador1.encenderReloj();
         String cancion = "Lofi Study - FASSounds";
         Frm_Notificacion noc = new Frm_Notificacion(this, Frm_Notificacion.Type.INFO, Frm_Notificacion.Location.BOT_LEFT, cancion);
@@ -261,10 +260,10 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
                 public void mouseClicked(MouseEvent me) {
                     String selec;
                     if (estado[v] && clic == 1) {
-                        // De momento no hacemos nada
-                        selec = cartas.recuperarCarta(lbl.getIcon().toString());
-                        // Formamos el String a la dirección de la carpeta
-                        selec = "src\\Imagenes\\" + selec + ".png";
+                        // Obtenemos el indice de la imagen en nuestro array 
+                        int indice = cartas.obtenerIndiceImagen(CARPETA.PICK, lbl.getIcon().toString());
+                        // Dado que las carpetas contienen a las imágenes en el mismo orden, solo llamamos a la carpeta.
+                        selec = cartas.getDirBase().get(indice);
                         // Cargamos la imagen
                         ImageIcon icon = new ImageIcon(selec);
                         lbl.setIcon(icon);
@@ -274,9 +273,14 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
                         clic++;
                         if (clic == 1) {
                             sounds.usarSonido("src\\Sound_Effects\\sound_click.mp3");
-                            selec = cartas.recuperarCarta(lbl.getIcon().toString());
-                            // Formamos el String a la dirección de la carpeta
-                            selec = "src\\Imagenes_Pick\\" + selec + ".png";
+                            // Obtenemos el indice de la imagen en nuestro array 
+                            int indice = cartas.obtenerIndiceImagen(CARPETA.A_PICK, lbl.getIcon().toString());
+                            // Si el indice es -1, es porque el usuario quito la selección.
+                            if (indice == -1) {
+                                indice = cartas.obtenerIndiceImagen(CARPETA.BASE, lbl.getIcon().toString());
+                            }
+                            // Dado que las carpetas contienen a las imágenes en el mismo orden, solo llamamos a la carpeta.
+                            selec = cartas.getDirPick().get(indice);
                             // Cargamos la imagen
                             ImageIcon icon = new ImageIcon(selec);
                             lbl.setIcon(icon);
@@ -324,9 +328,10 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
                     if (estado[v]) {
                         // Por el momento no hace nada
                     } else {
-                        selec = cartas.recuperarCarta(lbl.getIcon().toString());
-                        // Formamos el String a la dirección de la carpeta
-                        selec = "src\\Imagenes_Pick_Anim\\" + selec + ".gif";
+                        // Obtenemos el indice de la imagen en nuestro array 
+                        int indice = cartas.obtenerIndiceImagen(CARPETA.BASE, lbl.getIcon().toString());
+                        // Dado que las carpetas contienen a las imágenes en el mismo orden, solo llamamos a la carpeta.
+                        selec = cartas.getDirPickAnim().get(indice);
                         // Cargamos el gif
                         ImageIcon icon = new ImageIcon(selec);
                         // Refrescamos el gif
@@ -342,9 +347,14 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
                     if (estado[v]) {
                         // Por el momento no hace nada
                     } else {
-                        selec = cartas.recuperarCarta(lbl.getIcon().toString());
-                        // Formamos el String a la dirección de la carpeta
-                        selec = "src\\Imagenes\\" + selec + ".png";
+                        // Obtenemos el indice de la imagen en nuestro array 
+                        int indice = cartas.obtenerIndiceImagen(CARPETA.A_PICK, lbl.getIcon().toString());
+                        // Si el usuario da doble click y regresa la imagen a su estado base.
+                        if (indice == -1) {
+                            indice = cartas.obtenerIndiceImagen(CARPETA.BASE, lbl.getIcon().toString());
+                        }
+                        // Dado que las carpetas contienen a las imágenes en el mismo orden, solo llamamos a la carpeta.
+                        selec = cartas.getDirBase().get(indice);
                         // Cargamos la imagen
                         ImageIcon icon = new ImageIcon(selec);
                         lbl.setIcon(icon);
@@ -359,13 +369,6 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        panelGradiente3 = new Clases.PanelGradiente();
-        lbl7 = new javax.swing.JLabel();
-        lbl8 = new javax.swing.JLabel();
-        lbl9 = new javax.swing.JLabel();
-        lbl10 = new javax.swing.JLabel();
-        lbl11 = new javax.swing.JLabel();
-        lbl12 = new javax.swing.JLabel();
         rootPanel = new javax.swing.JPanel();
         panelOpciones = new Clases.PanelGradiente();
         btnMenu = new javax.swing.JButton();
@@ -384,56 +387,6 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
         lbl4 = new javax.swing.JLabel();
         lbl5 = new javax.swing.JLabel();
         lbl6 = new javax.swing.JLabel();
-
-        panelGradiente3.setColor1(new java.awt.Color(20, 10, 58));
-        panelGradiente3.setColor2(new java.awt.Color(52, 155, 142));
-
-        lbl7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Clovers_A_white.png"))); // NOI18N
-
-        lbl8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Clovers_A_white.png"))); // NOI18N
-
-        lbl9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Clovers_A_white.png"))); // NOI18N
-
-        lbl10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Clovers_A_white.png"))); // NOI18N
-
-        lbl11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Clovers_A_white.png"))); // NOI18N
-
-        lbl12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Clovers_A_white.png"))); // NOI18N
-
-        javax.swing.GroupLayout panelGradiente3Layout = new javax.swing.GroupLayout(panelGradiente3);
-        panelGradiente3.setLayout(panelGradiente3Layout);
-        panelGradiente3Layout.setHorizontalGroup(
-            panelGradiente3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelGradiente3Layout.createSequentialGroup()
-                .addGap(120, 120, 120)
-                .addGroup(panelGradiente3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelGradiente3Layout.createSequentialGroup()
-                        .addComponent(lbl7)
-                        .addGap(210, 210, 210)
-                        .addComponent(lbl8)
-                        .addGap(210, 210, 210)
-                        .addComponent(lbl9))
-                    .addGroup(panelGradiente3Layout.createSequentialGroup()
-                        .addComponent(lbl10)
-                        .addGap(210, 210, 210)
-                        .addComponent(lbl11)
-                        .addGap(210, 210, 210)
-                        .addComponent(lbl12))))
-        );
-        panelGradiente3Layout.setVerticalGroup(
-            panelGradiente3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelGradiente3Layout.createSequentialGroup()
-                .addGap(150, 150, 150)
-                .addGroup(panelGradiente3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl7)
-                    .addComponent(lbl8)
-                    .addComponent(lbl9))
-                .addGap(180, 180, 180)
-                .addGroup(panelGradiente3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(lbl10)
-                    .addComponent(lbl11)
-                    .addComponent(lbl12)))
-        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -549,17 +502,17 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
         panelJuego.setColor1(new java.awt.Color(20, 10, 58));
         panelJuego.setColor2(new java.awt.Color(52, 155, 142));
 
-        lbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Clovers_A_white.png"))); // NOI18N
+        lbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Clovers_A_white.png"))); // NOI18N
+        lbl2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Clovers_A_white.png"))); // NOI18N
+        lbl3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Clovers_A_white.png"))); // NOI18N
+        lbl4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Clovers_A_white.png"))); // NOI18N
+        lbl5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Clovers_A_white.png"))); // NOI18N
+        lbl6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
         javax.swing.GroupLayout panelJuegoLayout = new javax.swing.GroupLayout(panelJuego);
         panelJuego.setLayout(panelJuegoLayout);
@@ -570,11 +523,11 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
                 .addGroup(panelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(panelJuegoLayout.createSequentialGroup()
                         .addComponent(lbl4)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
                         .addComponent(lbl5))
                     .addGroup(panelJuegoLayout.createSequentialGroup()
                         .addComponent(lbl1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lbl2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 190, Short.MAX_VALUE)
                 .addGroup(panelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -585,11 +538,10 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
         panelJuegoLayout.setVerticalGroup(
             panelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelJuegoLayout.createSequentialGroup()
+                .addContainerGap(148, Short.MAX_VALUE)
                 .addGroup(panelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelJuegoLayout.createSequentialGroup()
-                        .addContainerGap(148, Short.MAX_VALUE)
                         .addGroup(panelJuegoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbl2)
                             .addComponent(lbl1)
                             .addComponent(lbl3))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 179, Short.MAX_VALUE)
@@ -597,7 +549,8 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
                             .addComponent(lbl4, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(lbl6, javax.swing.GroupLayout.Alignment.TRAILING)))
                     .addGroup(panelJuegoLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(lbl2)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lbl5)))
                 .addContainerGap(153, Short.MAX_VALUE))
         );
@@ -716,9 +669,14 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
         sounds.usarSonido("src\\Sound_Effects\\sound_correcto.mp3");
         // Calculamos los puntos
         puntos.actualizarPuntaje();
-        selec = iconA;
-        // Formamos el String a la dirección de la carpeta
-        selec = "src\\Imagenes_Correcto\\" + selec + ".gif";
+        // Obtenemos el indice de la imagen en nuestro array 
+        int indice = cartas.obtenerIndiceImagen(CARPETA.PICK, lbl1.getIcon().toString());
+        // Si el indice es -1, es porque esta en la animación
+        if (indice == -1 ) {
+            indice = cartas.obtenerIndiceImagen(CARPETA.A_PICK, lbl1.getIcon().toString());
+        }
+        // Dado que las carpetas contienen a las imágenes en el mismo orden, solo llamamos a la carpeta.
+        selec = cartas.getDirPickCorrect().get(indice);
         // Cargamos el gif
         ImageIcon icon = new ImageIcon(selec);
         // Refrescamos el gif
@@ -803,19 +761,12 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
     private javax.swing.JButton btnOpcion;
     private javax.swing.JButton btnSalir;
     private javax.swing.JLabel lbl1;
-    private javax.swing.JLabel lbl10;
-    private javax.swing.JLabel lbl11;
-    private javax.swing.JLabel lbl12;
     private javax.swing.JLabel lbl2;
     private javax.swing.JLabel lbl3;
     private javax.swing.JLabel lbl4;
     private javax.swing.JLabel lbl5;
     private javax.swing.JLabel lbl6;
-    private javax.swing.JLabel lbl7;
-    private javax.swing.JLabel lbl8;
-    private javax.swing.JLabel lbl9;
     private Clases.ObjetoContador obContador;
-    private Clases.PanelGradiente panelGradiente3;
     private Clases.PanelGradiente panelJuego;
     private Clases.PanelGradiente panelOpciones;
     private javax.swing.JPanel panelPrincipal;
