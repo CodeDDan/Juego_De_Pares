@@ -34,7 +34,7 @@ import javax.swing.event.ChangeEvent;
 
 public class Frm_JuegoDificil extends javax.swing.JFrame {
 
-    ObjetoImagen cartas = new ObjetoImagen(ObjetoImagen.MODELO.CARTAS);
+    ObjetoImagen cartas;
     ObjetoSonido sounds = new ObjetoSonido("src\\Sound_Effects");
     ObjetoMusic musc = new ObjetoMusic("src\\Musica\\XXL - Prazkhanal.mp3");
     // Variable para controlar el estado de los botones;
@@ -61,6 +61,20 @@ public class Frm_JuegoDificil extends javax.swing.JFrame {
 
     public Frm_JuegoDificil() {
         initComponents();
+        // Escogemos el modelo de las cartas
+        Dlg_Modelo modelo = new Dlg_Modelo(this, true);
+        modelo.setVisible(true);
+        switch (modelo.getOpcion()) {
+            case 1:
+                cartas = new ObjetoImagen(ObjetoImagen.MODELO.CARTAS);
+                break;
+            case 2:
+                cartas = new ObjetoImagen(ObjetoImagen.MODELO.FIGURAS);
+                break;
+            case 3:
+                cartas = new ObjetoImagen(ObjetoImagen.MODELO.LETRAS);
+                break;
+        }
         // Iniciamos el temporizador y lo agregamos
         temporizador1 = new Temporizador(Dificultad.DIFICIL);
         panelOpciones.add(temporizador1);
@@ -517,41 +531,41 @@ public class Frm_JuegoDificil extends javax.swing.JFrame {
         panelJuego.setColor1(new java.awt.Color(20, 10, 58));
         panelJuego.setColor2(new java.awt.Color(56, 0, 0));
 
-        lbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
+        lbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
+        lbl2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
+        lbl3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
+        lbl4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
+        lbl5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
+        lbl6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
+        lbl7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
+        lbl8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
+        lbl9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
+        lbl10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
+        lbl11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
+        lbl12.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
+        lbl13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
+        lbl14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
+        lbl15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
+        lbl16.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
+        lbl17.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
-        lbl18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Im_Cartas/Clovers_A_white.png"))); // NOI18N
+        lbl18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 
         javax.swing.GroupLayout panelJuegoLayout = new javax.swing.GroupLayout(panelJuego);
         panelJuego.setLayout(panelJuegoLayout);

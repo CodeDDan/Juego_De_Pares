@@ -19,7 +19,7 @@ public class ObjetoImagen {
     private ArrayList<String> dirPickCorrect = new ArrayList<>();
 
     public enum MODELO {
-        CARTAS, FIGURAS
+        CARTAS, FIGURAS, LETRAS
     }
 
     public ObjetoImagen(MODELO modelo) {
@@ -28,16 +28,22 @@ public class ObjetoImagen {
         // Las direcciones que agrega el método getAbsolutePath() se agregan con (\).
         switch (modelo) {
             case CARTAS:
-                base = "src\\Im_Cartas";
-                pick = "src\\Im_Cartas_Pick";
-                pickAnim = "src\\Im_Cartas_A_Pick";
-                pickCorrect = "src\\Im_Cartas_A_Correcto";
+                base = "src\\Imagenes\\Im_Cartas";
+                pick = "src\\Imagenes\\Im_Cartas_Pick";
+                pickAnim = "src\\Imagenes\\Im_Cartas_A_Pick";
+                pickCorrect = "src\\Imagenes\\Im_Cartas_A_Correcto";
                 break;
             case FIGURAS:
-                base = "src\\Im_Figuras";
-                pick = "src\\Im_Figuras_Pick";
-                pickAnim = "src\\Im_Figuras_A_Pick";
-                pickCorrect = "src\\Im_Figuras_A_Correcto";
+                base = "src\\Imagenes\\Im_Figuras";
+                pick = "src\\Imagenes\\Im_Figuras_Pick";
+                pickAnim = "src\\Imagenes\\Im_Figuras_A_Pick";
+                pickCorrect = "src\\Imagenes\\Im_Figuras_A_Correcto";
+                break;
+            case LETRAS:
+                base = "src\\Imagenes\\Im_Letras";
+                pick = "src\\Imagenes\\Im_Letras_Pick";
+                pickAnim = "src\\Imagenes\\Im_Letras_A_Pick";
+                pickCorrect = "src\\Imagenes\\Im_Letras_A_Correcto";
                 break;
             default:
                 break;
@@ -55,6 +61,7 @@ public class ObjetoImagen {
             Files.walk(dir).forEach(path -> addPickCorrect(path.toFile()));
         }catch (IOException e) {
             JOptionPane.showMessageDialog(null,"Error en la lectura de imágenes");
+            System.exit(0);
         }
         if (dirBase.size() != dirPick.size()) {
             JOptionPane.showMessageDialog(null, "No hay la misma cantidad de imagenes");

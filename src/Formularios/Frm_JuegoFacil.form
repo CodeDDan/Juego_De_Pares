@@ -280,42 +280,42 @@
                 <Component class="javax.swing.JLabel" name="lbl1">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Im_Cartas/Clovers_A_white.png"/>
+                      <Image iconType="3" name="/Imagenes/Im_Cartas/Clovers_A_white.png"/>
                     </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lbl2">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Im_Cartas/Clovers_A_white.png"/>
+                      <Image iconType="3" name="/Imagenes/Im_Cartas/Clovers_A_white.png"/>
                     </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lbl3">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Im_Cartas/Clovers_A_white.png"/>
+                      <Image iconType="3" name="/Imagenes/Im_Cartas/Clovers_A_white.png"/>
                     </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lbl4">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Im_Cartas/Clovers_A_white.png"/>
+                      <Image iconType="3" name="/Imagenes/Im_Cartas/Clovers_A_white.png"/>
                     </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lbl5">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Im_Cartas/Clovers_A_white.png"/>
+                      <Image iconType="3" name="/Imagenes/Im_Cartas/Clovers_A_white.png"/>
                     </Property>
                   </Properties>
                 </Component>
                 <Component class="javax.swing.JLabel" name="lbl6">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Im_Cartas/Clovers_A_white.png"/>
+                      <Image iconType="3" name="/Imagenes/Im_Cartas/Clovers_A_white.png"/>
                     </Property>
                   </Properties>
                 </Component>
