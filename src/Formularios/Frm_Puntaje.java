@@ -1,5 +1,7 @@
 package Formularios;
 
+import Clases.Conexion;
+import Clases.Usuario;
 import ClasesImportadas.Frm_Notificacion;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
@@ -14,11 +16,13 @@ import javax.swing.JFrame;
 
 public class Frm_Puntaje extends javax.swing.JFrame {
 
+    private Conexion con = new Conexion();
     private boolean estadoBtnMax = true;
     
     public Frm_Puntaje() {
         initComponents();
         tblPuntaje.fixTabla(jScrollPane1);
+        con.actualizarTabla(tblPuntaje, Usuario.getiD());
         JButton[] botones = {btnSalir, btnAyuda, btnMinimizar, btnMaximizar, btnBack};
         for (JButton btn : botones) {
             btn.setBackground(new Color(10, 31, 58));
@@ -133,19 +137,17 @@ public class Frm_Puntaje extends javax.swing.JFrame {
         panelGradiente2.setColor1(new java.awt.Color(20, 10, 58));
         panelGradiente2.setColor2(new java.awt.Color(43, 27, 104));
 
+        tblPuntaje.setForeground(new java.awt.Color(250, 250, 250));
         tblPuntaje.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Nivel", "Fecha", "Tiempo de Juego", "Puntaje"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, true, true
+                false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -154,6 +156,17 @@ public class Frm_Puntaje extends javax.swing.JFrame {
         });
         tblPuntaje.setFont(new java.awt.Font("mononoki NFM", 0, 18)); // NOI18N
         jScrollPane1.setViewportView(tblPuntaje);
+        if (tblPuntaje.getColumnModel().getColumnCount() > 0) {
+            tblPuntaje.getColumnModel().getColumn(0).setMinWidth(120);
+            tblPuntaje.getColumnModel().getColumn(0).setPreferredWidth(120);
+            tblPuntaje.getColumnModel().getColumn(0).setMaxWidth(120);
+            tblPuntaje.getColumnModel().getColumn(1).setMinWidth(250);
+            tblPuntaje.getColumnModel().getColumn(1).setPreferredWidth(290);
+            tblPuntaje.getColumnModel().getColumn(1).setMaxWidth(290);
+            tblPuntaje.getColumnModel().getColumn(3).setMinWidth(150);
+            tblPuntaje.getColumnModel().getColumn(3).setPreferredWidth(150);
+            tblPuntaje.getColumnModel().getColumn(3).setMaxWidth(150);
+        }
 
         javax.swing.GroupLayout panelGradiente2Layout = new javax.swing.GroupLayout(panelGradiente2);
         panelGradiente2.setLayout(panelGradiente2Layout);

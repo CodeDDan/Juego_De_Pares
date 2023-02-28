@@ -75,6 +75,8 @@ public class JTableEspecial extends JTable {
                 }
             }
             setBorder(new EmptyBorder(0, 5, 0, 5));
+            // Posición del texto
+            setHorizontalAlignment(JLabel.CENTER);
             return com;
         }
 

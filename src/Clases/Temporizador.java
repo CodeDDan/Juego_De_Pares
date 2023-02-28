@@ -38,13 +38,13 @@ public class Temporizador extends JLabel {
         // Aquí se determinan los segundos totales de partida por dificultad
         switch (dificultad) {
             case FACIL:
-                segundosTotales = 420;
+                segundosTotales = 180;
                 break;
             case MEDIO:
-                segundosTotales = 300;
+                segundosTotales = 120;
                 break;
             case DIFICIL:
-                segundosTotales = 180;
+                segundosTotales = 60;
                 break;
             default:
                 break;
@@ -108,13 +108,13 @@ public class Temporizador extends JLabel {
     public void resetear() {
         switch (dificultad) {
             case FACIL:
-                segundosTotales = 420;
+                segundosTotales = 180;
                 break;
             case MEDIO:
-                segundosTotales = 300;
+                segundosTotales = 120;
                 break;
             case DIFICIL:
-                segundosTotales = 180;
+                segundosTotales = 60;
                 break;
             default:
                 break;

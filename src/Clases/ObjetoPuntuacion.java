@@ -20,6 +20,10 @@ public class ObjetoPuntuacion extends Dialog {
     private final ImageIcon icon [] = new ImageIcon[11];
     private JLabel lbl1, lbl2, lbl3, lbl4;
     
+    public int getPuntaje() {
+        return puntaje;
+    }
+    
     public ObjetoPuntuacion(Frame owner, TIPO tipo, PanelGradiente panel) {
         super(owner);
         this.tipo = tipo;

@@ -6,7 +6,10 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  * @author Daniel Sánchez <daniel_s2604@hotmail.com>
@@ -139,7 +142,7 @@ public class Conexion {
     
     public boolean validarUsuario(String usuario, String password) {
         
-        String consulta = "SELECT u.USU_ALIAS, u.USU_PASSWORD\n" 
+        String consulta = "SELECT u.USU_ID, u.USU_ALIAS, u.USU_PASSWORD\n" 
                 + "FROM TBL_USUARIO u\n" 
                 + "WHERE u.USU_ALIAS = ? AND u.USU_PASSWORD = ?";
         System.out.println(consulta);
@@ -151,6 +154,7 @@ public class Conexion {
             ResultSet rs = ps.executeQuery();
             // La consulta se situa en la cabecera, de haber 1 resultado existirá rs.next()
             if (rs.next() == true) {
+                Usuario.setiD(Integer.valueOf(rs.getString(1)));
                 return true;
             }
         } catch (SQLException e) {
@@ -159,4 +163,60 @@ public class Conexion {
         return false;
     }
     
+    public void ingresarPuntaje(int niv_Id, String tiempoDeJuego, String puntaje) {
+        int par_Id = obtenerIntPK(Conexion.Tabla.PARTIDA) + 1;
+        int usu_Id = Usuario.getiD();
+        String consulta = "INSERT INTO TBL_PARTIDA (PAR_ID, USU_ID, NIV_ID, PAR_FECHA, "
+                + "PAR_TIEMPODEPARTIDA, PAR_PUNTAJE) \n" 
+                + "VALUES (?, ?, ?, ?, ?, ?)";
+        System.out.println(consulta);
+        // Método de protección "Consultas preparadas"
+        try {
+            PreparedStatement ps = conexion.prepareStatement(consulta);
+            ps.setString(1, String.valueOf(par_Id));
+            ps.setString(2, String.valueOf(usu_Id));
+            ps.setString(3, String.valueOf(niv_Id));
+            ps.setString(4, Usuario.getFecha());
+            ps.setString(5, Usuario.getFin());
+            ps.setString(6, puntaje);
+            ps.execute();
+        } catch (SQLException e) {
+            
+        }
+    }
+    
+    public String fechaYHora() {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String fecha = dateFormat.format(new Date());
+        System.out.println(fecha);
+        return fecha;
+    }
+    
+    public void actualizarTabla(JTableEspecial tabla, int usu_Id) {
+        DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
+        String consulta = "Select p.NIV_ID, p.PAR_FECHA, p.PAR_TIEMPODEPARTIDA, p.PAR_PUNTAJE \n" 
+                + "FROM TBL_PARTIDA p\n" 
+                + "WHERE p.USU_ID = " + usu_Id
+                + "ORDER BY p.PAR_FECHA DESC";
+        System.out.println(consulta);
+        try {
+            Statement st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(consulta);
+            /*
+            rs se situa en el "HEADER" por así decirlo, a pesar de que la consulta
+            solo devuelva un valor, existirá una cabezara. debemos mover el cursor 
+            usando rs.next()
+             */
+            while (rs.next()) {
+                String nivel = rs.getString(1);
+                String fecha = rs.getString(2);
+                String tiempo = rs.getString(3);
+                String puntaje = rs.getString(4);
+                modelo.addRow(new Object[]{nivel, fecha, tiempo, puntaje});
+            }
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Error, no se actualizar la tabla");
+        }
+        tabla.setModel(modelo);
+    }
 }

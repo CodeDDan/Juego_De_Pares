@@ -1,5 +1,6 @@
 package Formularios;
 
+import Clases.Conexion;
 import Clases.DialogEspecial;
 import Clases.ObjetoImagen;
 import Clases.ObjetoImagen.CARPETA;
@@ -8,6 +9,7 @@ import Clases.ObjetoPuntuacion;
 import Clases.ObjetoSonido;
 import Clases.Temporizador;
 import Clases.Temporizador.Dificultad;
+import Clases.Usuario;
 import ClasesImportadas.Frm_Notificacion;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -34,7 +36,9 @@ import javax.swing.event.ChangeEvent;
 
 public class Frm_JuegoFacil extends javax.swing.JFrame {
 
-    ObjetoImagen cartas; 
+    // Para ingresar datos a la base de datos
+    Conexion con = new Conexion();
+    ObjetoImagen cartas;
     ObjetoSonido sounds = new ObjetoSonido("src\\Sound_Effects");
     ObjetoMusic musc = new ObjetoMusic("src\\Musica\\Lofi Study - FASSounds.mp3");
     // Variable para controlar el estado de los botones;
@@ -210,6 +214,8 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
                 }
             });
         }
+        // Ingresamos el tiempo de inicio de la partida
+        Usuario.setFecha(con.fechaYHora());
         renewGame();
         // Se crea el objeto puntuación cuando el JFrame es visible.
         puntos.situarDialog(panelPrincipal);
@@ -658,8 +664,10 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
             temporizador1.encenderReloj();
             return;
         }
-        Frm_SeleccionD selecD = new Frm_SeleccionD();
-        selecD.setVisible(true);
+        Usuario.setFin(con.fechaYHora());
+        con.ingresarPuntaje(1, Usuario.getFin(), String.valueOf(puntos.getPuntaje()));
+        Frm_Puntaje puntaje = new Frm_Puntaje();
+        puntaje.setVisible(true);
         musc.getMediaPlayer().stop();
         timer.stop();
         /*
