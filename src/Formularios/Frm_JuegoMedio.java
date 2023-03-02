@@ -1,5 +1,6 @@
 package Formularios;
 
+import Clases.Conexion;
 import Clases.DialogEspecial;
 import Clases.ObjetoImagen;
 import Clases.ObjetoImagen.CARPETA;
@@ -8,6 +9,7 @@ import Clases.ObjetoPuntuacion;
 import Clases.ObjetoSonido;
 import Clases.Temporizador;
 import Clases.Temporizador.Dificultad;
+import Clases.Usuario;
 import ClasesImportadas.Frm_Notificacion;
 import java.awt.CardLayout;
 import java.awt.Color;
@@ -34,6 +36,8 @@ import javax.swing.event.ChangeEvent;
 
 public class Frm_JuegoMedio extends javax.swing.JFrame {
 
+    // Para ingresar datos a la base de datos
+    Conexion con = new Conexion();
     ObjetoImagen cartas;
     ObjetoSonido sounds = new ObjetoSonido("src\\Sound_Effects");
     ObjetoMusic musc = new ObjetoMusic("src\\Musica\\Modern Retro Funk - Saavane.mp3");
@@ -84,9 +88,12 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
             if(temporizador1.getSegundosTotales() <= 0) {
                 temporizador1.apagarReloj();
                 // Incluir aquí algún Dialog de fin de juego.
-                Frm_Puntaje puntuacion = new Frm_Puntaje();
+                Usuario.setFin(con.fechaYHora());
+                // El número inicial representa el nivel
+                con.ingresarPuntaje(2, Usuario.getFin(), String.valueOf(puntos.getPuntaje()));
+                Frm_Puntaje puntaje = new Frm_Puntaje();
                 musc.getMediaPlayer().stop();
-                puntuacion.setVisible(true);
+                puntaje.setVisible(true);
                 this.dispose();
                 timer.stop();
                 temporizador1 = null;
@@ -213,6 +220,8 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
                 }
             });
         }
+        // Ingresamos el tiempo inicial de la partida
+        Usuario.setFecha(con.fechaYHora());
         renewGame();
         // Se crea el objeto puntuación cuando el JFrame es visible.
         puntos.situarDialog(panelPrincipal);
@@ -681,8 +690,11 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
             temporizador1.encenderReloj();
             return;
         }
-        Frm_SeleccionD selecD = new Frm_SeleccionD();
-        selecD.setVisible(true);
+        Usuario.setFin(con.fechaYHora());
+        // El número inicial representa el nivel
+        con.ingresarPuntaje(2, Usuario.getFin(), String.valueOf(puntos.getPuntaje()));
+        Frm_Puntaje puntaje = new Frm_Puntaje();
+        puntaje.setVisible(true);
         musc.getMediaPlayer().stop();
         timer.stop();
         /*
@@ -738,7 +750,10 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
             DialogEspecial dig = new DialogEspecial(2);
             if (!dig.isValor()) {
                 musc.getMediaPlayer().stop();
-                Frm_SeleccionD selecD = new Frm_SeleccionD();
+                Usuario.setFin(con.fechaYHora());
+                // El número inicial representa el nivel
+                con.ingresarPuntaje(2, Usuario.getFin(), String.valueOf(puntos.getPuntaje()));
+                Frm_Puntaje puntaje = new Frm_Puntaje();
                 timer.stop();
                 /*
                 Asignamos el valor de null a nuestro temporizador para que el 
@@ -747,7 +762,7 @@ public class Frm_JuegoMedio extends javax.swing.JFrame {
                 */
                 temporizador1 = null;
                 this.dispose();
-                selecD.setVisible(true);
+                puntaje.setVisible(true);
                 return;
             }
             this.renewGame();

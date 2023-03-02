@@ -143,7 +143,7 @@ public class Frm_Puntaje extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nivel", "Fecha", "Tiempo de Juego", "Puntaje"
+                "Nivel", "Inicio", "Fin", "Puntaje"
             }
         ) {
             boolean[] canEdit = new boolean [] {

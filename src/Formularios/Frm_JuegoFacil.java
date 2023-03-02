@@ -86,9 +86,12 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
             if(temporizador1.getSegundosTotales() <= 0) {
                 temporizador1.apagarReloj();
                 // Incluir aquí algún Dialog de fin de juego.
-                Frm_Puntaje puntuacion = new Frm_Puntaje();
+                Usuario.setFin(con.fechaYHora());
+                // El número inicial representa el nivel
+                con.ingresarPuntaje(1, Usuario.getFin(), String.valueOf(puntos.getPuntaje()));
+                Frm_Puntaje puntaje = new Frm_Puntaje();
                 musc.getMediaPlayer().stop();
-                puntuacion.setVisible(true);
+                puntaje.setVisible(true);
                 this.dispose();
                 timer.stop();
                 temporizador1 = null;
@@ -665,6 +668,7 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
             return;
         }
         Usuario.setFin(con.fechaYHora());
+        // El número inicial representa el nivel
         con.ingresarPuntaje(1, Usuario.getFin(), String.valueOf(puntos.getPuntaje()));
         Frm_Puntaje puntaje = new Frm_Puntaje();
         puntaje.setVisible(true);
@@ -723,7 +727,10 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
             DialogEspecial dig = new DialogEspecial(2);
             if (!dig.isValor()) {
                 musc.getMediaPlayer().stop();
-                Frm_SeleccionD selecD = new Frm_SeleccionD();
+                Usuario.setFin(con.fechaYHora());
+                // El número inicial representa el nivel
+                con.ingresarPuntaje(1, Usuario.getFin(), String.valueOf(puntos.getPuntaje()));
+                Frm_Puntaje puntaje = new Frm_Puntaje();
                 timer.stop();
                 /*
                 Asignamos el valor de null a nuestro temporizador para que el 
@@ -732,7 +739,7 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
                 */
                 temporizador1 = null;
                 this.dispose();
-                selecD.setVisible(true);
+                puntaje.setVisible(true);
                 return;
             }
             this.renewGame();
