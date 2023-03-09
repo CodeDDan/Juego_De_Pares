@@ -1,6 +1,7 @@
 package Formularios;
 
 import Clases.Conexion;
+import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -57,7 +58,7 @@ public class Frm_Login extends javax.swing.JFrame {
                 if (isLogin) {
                     fractionCover = 1f - fraction;
                     fractionLogin = fraction;
-                    cover.getBtnInicio().setIcon(new ImageIcon("src\\Iconos\\PalLogin_64px.png"));
+                    cover.getBtnInicio().setIcon(new ImageIcon("src\\Iconos\\PalIngreso_64px.png"));
                 } else {
                     fractionCover = fraction;
                     fractionLogin = 1f - fraction;
@@ -127,6 +128,9 @@ public class Frm_Login extends javax.swing.JFrame {
         if (txtNick.getText().equals("") || txtNombre.getText().equals("") || txtApellido.getText().equals("")
                 || txtCorreo.getText().equals("") || txtPass.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Ingrese todos los campos");
+            return;
+        } else if (txtCorreo.getForeground().equals(new Color(148, 17, 59))) {
+            JOptionPane.showMessageDialog(null, "Ingrese un correo válido");
             return;
         }
         con.registrarUsuario(txtNick.getText(), txtNombre.getText(), txtApellido.getText(), txtCorreo.getText(), txtPass.getText());

@@ -3,6 +3,7 @@ package Clases;
 import java.awt.Color;
 import java.awt.Dialog;
 import java.awt.FlowLayout;
+import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
@@ -74,16 +75,39 @@ public class DialogEspecial extends JDialog{
                 dispose();
             }   
         });
+        // Agregamos un Gif con animación
+        JLabel animacion = new JLabel();
+        // Cargamos el gif
+        ImageIcon icon;
+        switch (tipo) {
+            case 1:
+                icon = new ImageIcon("src\\Iconos\\IconoWizard_200px.gif");
+                break;
+            case 2:
+                icon = new ImageIcon("src\\Iconos\\IconoWizardF_200px.gif");
+                break;
+            case 3:
+                icon = new ImageIcon("src\\Iconos\\IconoWizardN_200px.gif");
+                break;
+            default:
+                icon = new ImageIcon("src\\Iconos\\IconoWizard_200px.gif");
+                break;
+        }
+        // Refrescamos el gif
+        Image img = icon.getImage();
+        img.flush();
+        animacion.setIcon(icon);
         PanelGradiente panel = new PanelGradiente();
         panel.setColor1(new Color(20,10,58));
         panel.setColor2(new Color(43,27,104));
         panel.setLayout(new FlowLayout(FlowLayout.CENTER, 40, 50));
+        panel.add(animacion);
         panel.add(lblMensaje);
         panel.add(btnSi);
         if (tipo == 2 || tipo == 3) {
             panel.add(btnNo);
         }
-        this.setSize(400, 300);
+        this.setSize(400, 600);
         this.setLocationRelativeTo(null);
         this.add(panel);
         //Primero se pone el tipo de modal, luego se lo pone visible.

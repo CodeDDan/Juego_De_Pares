@@ -113,7 +113,7 @@ public class Frm_SeleccionD extends javax.swing.JFrame {
             }
         });
 
-        btnPuntuacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/PalPuntuacion_50px.png"))); // NOI18N
+        btnPuntuacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/PalPuntuacionDot_50px.png"))); // NOI18N
         btnPuntuacion.setRadio(20);
         btnPuntuacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -158,14 +158,14 @@ public class Frm_SeleccionD extends javax.swing.JFrame {
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnFacil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/PalFacil_64px.png"))); // NOI18N
+        btnFacil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/PalFacilDot_64px.png"))); // NOI18N
         btnFacil.setRadio(20);
         btnFacil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnFacilActionPerformed(evt);
             }
         });
-        jPanel1.add(btnFacil, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));
+        jPanel1.add(btnFacil, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, -1, -1));
 
         jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -180,14 +180,14 @@ public class Frm_SeleccionD extends javax.swing.JFrame {
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnDificil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/PalDificil_64px.png"))); // NOI18N
+        btnDificil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/PalDificilDot_64px.png"))); // NOI18N
         btnDificil.setRadio(20);
         btnDificil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnDificilActionPerformed(evt);
             }
         });
-        jPanel3.add(btnDificil, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
+        jPanel3.add(btnDificil, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 

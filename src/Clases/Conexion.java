@@ -124,7 +124,7 @@ public class Conexion {
             ps.execute();
             JOptionPane.showMessageDialog(null, "Usuario ingresado");
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Error, no se pudo ingresar");
+            JOptionPane.showMessageDialog(null, "Error, no se pudo registrar, intente cambiado el alias");
         }
     }
 
@@ -196,7 +196,7 @@ public class Conexion {
         DefaultTableModel modelo = (DefaultTableModel) tabla.getModel();
         String consulta = "Select p.NIV_ID, p.PAR_FECHA, p.PAR_TIEMPODEPARTIDA, p.PAR_PUNTAJE \n" 
                 + "FROM TBL_PARTIDA p\n" 
-                + "WHERE p.USU_ID = " + usu_Id
+                + "WHERE p.USU_ID = " + usu_Id + " "
                 + "ORDER BY p.PAR_FECHA DESC";
         System.out.println(consulta);
         try {
@@ -209,6 +209,19 @@ public class Conexion {
              */
             while (rs.next()) {
                 String nivel = rs.getString(1);
+                switch (nivel) {
+                    case "1":
+                        nivel = "Fácil";
+                        break;
+                    case "2":
+                        nivel = "Medio";
+                        break;
+                    case "3":
+                        nivel = "Difícil";
+                        break;
+                    default:
+                        break;
+                }
                 String fecha = rs.getString(2);
                 String tiempo = rs.getString(3);
                 String puntaje = rs.getString(4);

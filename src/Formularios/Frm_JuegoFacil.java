@@ -89,10 +89,12 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
                 Usuario.setFin(con.fechaYHora());
                 // El número inicial representa el nivel
                 con.ingresarPuntaje(1, Usuario.getFin(), String.valueOf(puntos.getPuntaje()));
-                Frm_Puntaje puntaje = new Frm_Puntaje();
                 musc.getMediaPlayer().stop();
-                puntaje.setVisible(true);
+                Dlg_JuegoTerminado pantallaFinal = new Dlg_JuegoTerminado(this, true);
+                pantallaFinal.setVisible(true);
                 this.dispose();
+                Frm_Puntaje puntaje = new Frm_Puntaje();
+                puntaje.setVisible(true);
                 timer.stop();
                 temporizador1 = null;
             }
@@ -661,8 +663,8 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
     }//GEN-LAST:event_btnMinimizarActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        DialogEspecial dg = new DialogEspecial(3);
         temporizador1.apagarReloj();
+        DialogEspecial dg = new DialogEspecial(3);
         if (!dg.isValor()) {
             temporizador1.encenderReloj();
             return;
@@ -671,7 +673,6 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
         // El número inicial representa el nivel
         con.ingresarPuntaje(1, Usuario.getFin(), String.valueOf(puntos.getPuntaje()));
         Frm_Puntaje puntaje = new Frm_Puntaje();
-        puntaje.setVisible(true);
         musc.getMediaPlayer().stop();
         timer.stop();
         /*
@@ -680,7 +681,10 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
         No ocurre inmediatamente
         */
         temporizador1 = null;
+        Dlg_JuegoTerminado pantallaFinal = new Dlg_JuegoTerminado(this, true);
+        pantallaFinal.setVisible(true);
         this.dispose();
+        puntaje.setVisible(true);
     }//GEN-LAST:event_btnBackActionPerformed
 
     private boolean compararIconos(JLabel lbl1, JLabel lbl2) {
@@ -738,6 +742,8 @@ public class Frm_JuegoFacil extends javax.swing.JFrame {
                 No ocurre inmediatamente
                 */
                 temporizador1 = null;
+                Dlg_JuegoTerminado pantallaFinal = new Dlg_JuegoTerminado(this, true);
+                pantallaFinal.setVisible(true);
                 this.dispose();
                 puntaje.setVisible(true);
                 return;

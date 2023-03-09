@@ -146,7 +146,7 @@
             <Component class="Clases.JButtonEspecial" name="btnPuntuacion">
               <Properties>
                 <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/Iconos/PalPuntuacion_50px.png"/>
+                  <Image iconType="3" name="/Iconos/PalPuntuacionDot_50px.png"/>
                 </Property>
                 <Property name="radio" type="int" value="20"/>
               </Properties>
@@ -219,7 +219,7 @@
                 <Component class="Clases.JButtonEspecial" name="btnFacil">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Iconos/PalFacil_64px.png"/>
+                      <Image iconType="3" name="/Iconos/PalFacilDot_64px.png"/>
                     </Property>
                     <Property name="radio" type="int" value="20"/>
                   </Properties>
@@ -228,7 +228,7 @@
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="40" y="0" width="-1" height="-1"/>
+                      <AbsoluteConstraints x="60" y="0" width="-1" height="-1"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -267,7 +267,7 @@
                 <Component class="Clases.JButtonEspecial" name="btnDificil">
                   <Properties>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/Iconos/PalDificil_64px.png"/>
+                      <Image iconType="3" name="/Iconos/PalDificilDot_64px.png"/>
                     </Property>
                     <Property name="radio" type="int" value="20"/>
                   </Properties>
@@ -276,7 +276,7 @@
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="20" y="0" width="-1" height="-1"/>
+                      <AbsoluteConstraints x="40" y="0" width="-1" height="-1"/>
                     </Constraint>
                   </Constraints>
                 </Component>

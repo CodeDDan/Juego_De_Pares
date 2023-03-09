@@ -43,7 +43,7 @@ public class Panel_Cover extends javax.swing.JPanel {
         add(lblLogo);
         btnInicio = new JButtonEspecial();
         btnInicio.setRadio(70);
-        btnInicio.setIcon(new ImageIcon("src\\Iconos\\PalLogin_64px.png"));
+        btnInicio.setIcon(new ImageIcon("src\\Iconos\\PalIngreso_64px.png"));
         btnInicio.addActionListener((ActionEvent ae) -> {
             event.actionPerformed(ae);
         });

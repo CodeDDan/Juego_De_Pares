@@ -4,25 +4,30 @@ import Clases.Conexion;
 import Clases.Usuario;
 import ClasesImportadas.Frm_Notificacion;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableCellRenderer;
 
 /**
  * @author Daniel Sánchez
  */
-
 public class Frm_Puntaje extends javax.swing.JFrame {
 
-    private Conexion con = new Conexion();
+    private final Conexion con = new Conexion();
     private boolean estadoBtnMax = true;
-    
+
     public Frm_Puntaje() {
         initComponents();
         tblPuntaje.fixTabla(jScrollPane1);
         con.actualizarTabla(tblPuntaje, Usuario.getiD());
+        tblPuntaje.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
         JButton[] botones = {btnSalir, btnAyuda, btnMinimizar, btnMaximizar, btnBack};
         for (JButton btn : botones) {
             btn.setBackground(new Color(10, 31, 58));
@@ -39,6 +44,62 @@ public class Frm_Puntaje extends javax.swing.JFrame {
                 }
             });
         }
+    }
+
+    private static class ImageRenderer extends DefaultTableCellRenderer {
+
+        private final JLabel label;
+
+        public ImageRenderer() {
+            label = new JLabel();
+            label.setHorizontalAlignment(JLabel.CENTER);
+        }
+
+        @Override
+        public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
+            if (value.toString().equals("Fácil")) {
+                label.setIcon(new ImageIcon("src\\Iconos\\IconoFacil_30px.png"));
+                label.setText(value.toString());
+            } else if (value.toString().equals("Medio")) {
+                label.setIcon(new ImageIcon("src\\Iconos\\IconoMedio_30px.png"));
+                label.setText(value.toString());
+            } else if (value.toString().equals("Difícil")) {
+                label.setIcon(new ImageIcon("src\\Iconos\\IconoDificil_30px.png"));
+                label.setText(value.toString());
+            } else {
+                label.setIcon(null);
+                label.setText("");
+            }
+            if (isSelected) {
+                label.setBackground(table.getSelectionBackground());
+                label.setForeground(table.getSelectionForeground());
+                label.setFont(table.getFont());
+            } else {
+                label.setBackground(table.getBackground());
+                label.setForeground(table.getForeground());
+                label.setFont(table.getFont());
+            }
+            JPanel panel = new JPanel();
+            label.setOpaque(false); // Debe estar en false para que no tenga color
+            panel.add(label);
+            if (isSelected) {
+                // Color celdas seleccionadas
+                if (row % 2 == 0) {
+                    panel.setBackground(new Color(33, 103, 153));
+                }else {
+                    panel.setBackground(new Color(29, 86, 127));
+                }
+            } else {
+                // Color de las celdas libres
+                if (row % 2 == 0) {
+                    panel.setBackground(new Color(50, 50, 50));
+                } else {
+                    panel.setBackground(new Color(30, 30, 30));
+                }
+            }
+            return panel;
+        }
+
     }
 
     @SuppressWarnings("unchecked")
@@ -143,7 +204,7 @@ public class Frm_Puntaje extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Nivel", "Inicio", "Fin", "Puntaje"
+                "Dificultad", "Inicio", "Fin", "Puntaje"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -250,7 +311,7 @@ public class Frm_Puntaje extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Frm_Puntaje.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         //</editor-fold>
 
         /* Create and display the form */
