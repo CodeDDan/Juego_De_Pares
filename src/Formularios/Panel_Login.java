@@ -149,8 +149,8 @@ public class Panel_Login extends javax.swing.JPanel {
 
         setLayout(new java.awt.CardLayout());
 
-        panelRegistro.setColor1(new java.awt.Color(247, 174, 33));
-        panelRegistro.setColor2(new java.awt.Color(66, 15, 112));
+        panelRegistro.setColor1(new java.awt.Color(255, 255, 28));
+        panelRegistro.setColor2(new java.awt.Color(137, 255, 253));
 
         javax.swing.GroupLayout panelRegistroLayout = new javax.swing.GroupLayout(panelRegistro);
         panelRegistro.setLayout(panelRegistroLayout);
@@ -165,8 +165,8 @@ public class Panel_Login extends javax.swing.JPanel {
 
         add(panelRegistro, "card2");
 
-        panelLogin.setColor1(new java.awt.Color(20, 10, 58));
-        panelLogin.setColor2(new java.awt.Color(122, 48, 255));
+        panelLogin.setColor1(new java.awt.Color(21, 101, 192));
+        panelLogin.setColor2(new java.awt.Color(137, 255, 253));
 
         javax.swing.GroupLayout panelLoginLayout = new javax.swing.GroupLayout(panelLogin);
         panelLogin.setLayout(panelLoginLayout);

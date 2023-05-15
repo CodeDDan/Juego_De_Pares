@@ -26,18 +26,18 @@ public class Frm_SeleccionD extends javax.swing.JFrame {
         }
         JButton[] botones = {btnSalir, btnAyuda, btnMinimizar, btnMaximizar, btnBack};
         for (JButton btn : botones) {
-            btn.setBackground(new Color(10, 31, 58));
+            btn.setBackground(new Color(253, 239, 249));
             // Para un botón simple btn.setUI(new BasicButtonUI());
             btn.addMouseListener(new MouseAdapter() {
 
                 @Override
                 public void mouseEntered(MouseEvent me) {
-                    btn.setBackground(new Color(72, 153, 188));
+                    btn.setBackground(new Color(42, 8, 69));
                 }
 
                 @Override
                 public void mouseExited(MouseEvent me) {
-                    btn.setBackground(new Color(10, 31, 58));
+                    btn.setBackground(new Color(253, 239, 249));
                 }
                 
             });
@@ -77,8 +77,8 @@ public class Frm_SeleccionD extends javax.swing.JFrame {
 
         rootPanel.setLayout(new java.awt.BorderLayout());
 
-        panelGradiente1.setColor1(new java.awt.Color(43, 27, 104));
-        panelGradiente1.setColor2(new java.awt.Color(20, 10, 58));
+        panelGradiente1.setColor1(new java.awt.Color(239, 50, 217));
+        panelGradiente1.setColor2(new java.awt.Color(137, 255, 253));
         panelGradiente1.setPreferredSize(new java.awt.Dimension(500, 75));
 
         btnAyuda.setBackground(new java.awt.Color(10, 31, 58));
@@ -128,7 +128,7 @@ public class Frm_SeleccionD extends javax.swing.JFrame {
             .addGroup(panelGradiente1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnPuntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, 440, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 115, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 194, Short.MAX_VALUE)
                 .addComponent(btnAyuda, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnMinimizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -148,13 +148,13 @@ public class Frm_SeleccionD extends javax.swing.JFrame {
                     .addComponent(btnMaximizar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnSalir, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnPuntuacion, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addGap(31, 31, 31))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         rootPanel.add(panelGradiente1, java.awt.BorderLayout.PAGE_START);
 
-        panelGradiente2.setColor1(new java.awt.Color(20, 10, 58));
-        panelGradiente2.setColor2(new java.awt.Color(43, 27, 104));
+        panelGradiente2.setColor1(new java.awt.Color(21, 101, 192));
+        panelGradiente2.setColor2(new java.awt.Color(137, 255, 253));
 
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -176,7 +176,7 @@ public class Frm_SeleccionD extends javax.swing.JFrame {
                 btnMedioActionPerformed(evt);
             }
         });
-        jPanel2.add(btnMedio, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));
+        jPanel2.add(btnMedio, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, -1, -1));
 
         jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -187,7 +187,7 @@ public class Frm_SeleccionD extends javax.swing.JFrame {
                 btnDificilActionPerformed(evt);
             }
         });
-        jPanel3.add(btnDificil, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));
+        jPanel3.add(btnDificil, new org.netbeans.lib.awtextra.AbsoluteConstraints(60, 0, -1, -1));
 
         jPanel4.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -198,7 +198,7 @@ public class Frm_SeleccionD extends javax.swing.JFrame {
                 btnCerrarActionPerformed(evt);
             }
         });
-        jPanel4.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 0, -1, -1));
+        jPanel4.add(btnCerrar, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 0, -1, -1));
 
         btnBack.setBackground(new java.awt.Color(10, 31, 58));
         btnBack.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/IconoBack_50px.png"))); // NOI18N
@@ -213,13 +213,13 @@ public class Frm_SeleccionD extends javax.swing.JFrame {
         panelGradiente2Layout.setHorizontalGroup(
             panelGradiente2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelGradiente2Layout.createSequentialGroup()
-                .addContainerGap(238, Short.MAX_VALUE)
-                .addGroup(panelGradiente2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(239, Short.MAX_VALUE))
+                .addContainerGap(195, Short.MAX_VALUE)
+                .addGroup(panelGradiente2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 496, Short.MAX_VALUE)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(200, Short.MAX_VALUE))
             .addGroup(panelGradiente2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -230,15 +230,15 @@ public class Frm_SeleccionD extends javax.swing.JFrame {
             .addGroup(panelGradiente2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 64, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 93, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(108, Short.MAX_VALUE))
+                .addContainerGap(131, Short.MAX_VALUE))
         );
 
         rootPanel.add(panelGradiente2, java.awt.BorderLayout.CENTER);

@@ -146,8 +146,8 @@ public class Frm_Login extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        panelGradiente1.setColor1(new java.awt.Color(20, 10, 58));
-        panelGradiente1.setColor2(new java.awt.Color(43, 27, 104));
+        panelGradiente1.setColor1(new java.awt.Color(239, 50, 217));
+        panelGradiente1.setColor2(new java.awt.Color(137, 255, 253));
 
         javax.swing.GroupLayout panelGradiente1Layout = new javax.swing.GroupLayout(panelGradiente1);
         panelGradiente1.setLayout(panelGradiente1Layout);

@@ -33,8 +33,8 @@ public class Dlg_Modelo extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
-        panelBase.setColor1(new java.awt.Color(20, 10, 58));
-        panelBase.setColor2(new java.awt.Color(43, 27, 104));
+        panelBase.setColor1(new java.awt.Color(239, 50, 217));
+        panelBase.setColor2(new java.awt.Color(137, 255, 253));
 
         jButtonEspecial1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/PalCartas_64px.png"))); // NOI18N
         jButtonEspecial1.setRadio(20);

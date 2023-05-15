@@ -37,8 +37,8 @@ public class Dlg_JuegoTerminado extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
 
-        panelGradiente1.setColor1(new java.awt.Color(20, 10, 58));
-        panelGradiente1.setColor2(new java.awt.Color(43, 27, 104));
+        panelGradiente1.setColor1(new java.awt.Color(239, 50, 217));
+        panelGradiente1.setColor2(new java.awt.Color(137, 255, 253));
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/PalJuegoTerminado_64px.png"))); // NOI18N
 
@@ -57,26 +57,26 @@ public class Dlg_JuegoTerminado extends javax.swing.JDialog {
             .addGroup(panelGradiente1Layout.createSequentialGroup()
                 .addGroup(panelGradiente1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(panelGradiente1Layout.createSequentialGroup()
-                        .addGap(235, 235, 235)
-                        .addComponent(lblAnim, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(panelGradiente1Layout.createSequentialGroup()
                         .addGap(100, 100, 100)
                         .addComponent(jLabel2))
                     .addGroup(panelGradiente1Layout.createSequentialGroup()
-                        .addGap(222, 222, 222)
-                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(282, 282, 282)
+                        .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(panelGradiente1Layout.createSequentialGroup()
+                        .addGap(327, 327, 327)
+                        .addComponent(lblAnim, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(116, Short.MAX_VALUE))
         );
         panelGradiente1Layout.setVerticalGroup(
             panelGradiente1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelGradiente1Layout.createSequentialGroup()
-                .addGap(39, 39, 39)
+                .addGap(41, 41, 41)
                 .addComponent(lblAnim, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addGap(36, 36, 36)
+                .addGap(40, 40, 40)
                 .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addContainerGap(106, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

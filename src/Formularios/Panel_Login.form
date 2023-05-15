@@ -19,10 +19,10 @@
     <Container class="Clases.PanelGradiente" name="panelRegistro">
       <Properties>
         <Property name="color1" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="21" green="ae" red="f7" type="rgb"/>
+          <Color blue="1c" green="ff" red="ff" type="rgb"/>
         </Property>
         <Property name="color2" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="70" green="f" red="42" type="rgb"/>
+          <Color blue="fd" green="ff" red="89" type="rgb"/>
         </Property>
       </Properties>
       <Constraints>
@@ -47,10 +47,10 @@
     <Container class="Clases.PanelGradiente" name="panelLogin">
       <Properties>
         <Property name="color1" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="3a" green="a" red="14" type="rgb"/>
+          <Color blue="c0" green="65" red="15" type="rgb"/>
         </Property>
         <Property name="color2" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="ff" green="30" red="7a" type="rgb"/>
+          <Color blue="fd" green="ff" red="89" type="rgb"/>
         </Property>
       </Properties>
       <Constraints>

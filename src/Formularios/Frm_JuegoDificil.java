@@ -208,20 +208,21 @@ public class Frm_JuegoDificil extends javax.swing.JFrame {
         });
         JButton[] botones = {btnSalir, btnOpcion, btnAyuda, btnMenu, btnMinimizar, btnMaximizar, btnBack};
         for (JButton btn : botones) {
-            btn.setBackground(new Color(10, 31, 58));
+            btn.setBackground(new Color(253, 239, 249));
             // Para un botón simple btn.setUI(new BasicButtonUI());
             btn.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseEntered(MouseEvent me) {
-                    btn.setBackground(new Color(72, 153, 188));
+                    btn.setBackground(new Color(42, 8, 69));
                 }
 
                 @Override
                 public void mouseExited(MouseEvent me) {
-                    btn.setBackground(new Color(10, 31, 58));
+                    btn.setBackground(new Color(253, 239, 249));
                 }
             });
         }
+        panelJuego.setImagenFondo("src/Iconos/background2.png");
         // Ingresamos el tiempo inicial de la partida
         Usuario.setFecha(con.fechaYHora());
         renewGame();
@@ -435,8 +436,8 @@ public class Frm_JuegoDificil extends javax.swing.JFrame {
         rootPanel.setPreferredSize(new java.awt.Dimension(1020, 895));
         rootPanel.setLayout(new java.awt.BorderLayout());
 
-        panelOpciones.setColor1(new java.awt.Color(56, 0, 0));
-        panelOpciones.setColor2(new java.awt.Color(20, 10, 58));
+        panelOpciones.setColor1(new java.awt.Color(239, 50, 217));
+        panelOpciones.setColor2(new java.awt.Color(137, 255, 253));
         panelOpciones.setPreferredSize(new java.awt.Dimension(800, 75));
 
         btnMenu.setBackground(new java.awt.Color(10, 31, 58));
@@ -540,8 +541,8 @@ public class Frm_JuegoDificil extends javax.swing.JFrame {
 
         panelPrincipal.setLayout(new java.awt.CardLayout());
 
-        panelJuego.setColor1(new java.awt.Color(20, 10, 58));
-        panelJuego.setColor2(new java.awt.Color(56, 0, 0));
+        panelJuego.setColor1(new java.awt.Color(239, 50, 217));
+        panelJuego.setColor2(new java.awt.Color(137, 255, 253));
 
         lbl1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Im_Cartas/Clovers_A_white.png"))); // NOI18N
 

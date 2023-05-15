@@ -19,11 +19,11 @@ public class JButtonEspecial extends JButton{
     } 
     
     private void init() {
-        setColor(new Color(10,31,58));
+        setColor(new Color(253, 239, 249));
         setBackground(color);
-        colorDentro = new Color(98, 174, 219);
-        colorClick = new Color(76, 136, 171);
-        colorBorde = new Color(112, 55, 249);
+        colorDentro = new Color(42, 8, 69);
+        colorClick = new Color(100, 65, 165);
+        colorBorde = new Color(82, 85, 255);
         setContentAreaFilled(false);
         addMouseListener(new MouseAdapter() {
             @Override

@@ -67,7 +67,7 @@ public class Panel_Menu extends javax.swing.JPanel {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(91, 62, 0, 61);
+        gridBagConstraints.insets = new java.awt.Insets(80, 30, 0, 19);
         panelBase.add(btnReanudar, gridBagConstraints);
 
         btnOpcion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/PalOpciones_64px.png"))); // NOI18N
@@ -77,7 +77,7 @@ public class Panel_Menu extends javax.swing.JPanel {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(97, 74, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(97, 50, 0, 0);
         panelBase.add(btnOpcion, gridBagConstraints);
 
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/PalSalir_64px.png"))); // NOI18N
@@ -86,7 +86,7 @@ public class Panel_Menu extends javax.swing.JPanel {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        gridBagConstraints.insets = new java.awt.Insets(107, 134, 86, 0);
+        gridBagConstraints.insets = new java.awt.Insets(87, 120, 117, 0);
         panelBase.add(btnSalir, gridBagConstraints);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);

@@ -30,17 +30,17 @@ public class Frm_Puntaje extends javax.swing.JFrame {
         tblPuntaje.getColumnModel().getColumn(0).setCellRenderer(new ImageRenderer());
         JButton[] botones = {btnSalir, btnAyuda, btnMinimizar, btnMaximizar, btnBack};
         for (JButton btn : botones) {
-            btn.setBackground(new Color(10, 31, 58));
+            btn.setBackground(new Color(253, 239, 249));
             // Para un botón simple btn.setUI(new BasicButtonUI());
             btn.addMouseListener(new MouseAdapter() {
                 @Override
                 public void mouseEntered(MouseEvent me) {
-                    btn.setBackground(new Color(72, 153, 188));
+                    btn.setBackground(new Color(42, 8, 69));
                 }
 
                 @Override
                 public void mouseExited(MouseEvent me) {
-                    btn.setBackground(new Color(10, 31, 58));
+                    btn.setBackground(new Color(253, 239, 249));
                 }
             });
         }
@@ -119,8 +119,8 @@ public class Frm_Puntaje extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        panelGradiente1.setColor1(new java.awt.Color(43, 27, 104));
-        panelGradiente1.setColor2(new java.awt.Color(20, 10, 58));
+        panelGradiente1.setColor1(new java.awt.Color(239, 50, 217));
+        panelGradiente1.setColor2(new java.awt.Color(137, 255, 253));
         panelGradiente1.setPreferredSize(new java.awt.Dimension(1020, 75));
 
         btnAyuda.setBackground(new java.awt.Color(10, 31, 58));
@@ -195,8 +195,8 @@ public class Frm_Puntaje extends javax.swing.JFrame {
 
         getContentPane().add(panelGradiente1, java.awt.BorderLayout.PAGE_START);
 
-        panelGradiente2.setColor1(new java.awt.Color(20, 10, 58));
-        panelGradiente2.setColor2(new java.awt.Color(43, 27, 104));
+        panelGradiente2.setColor1(new java.awt.Color(239, 50, 217));
+        panelGradiente2.setColor2(new java.awt.Color(137, 255, 253));
 
         tblPuntaje.setForeground(new java.awt.Color(250, 250, 250));
         tblPuntaje.setModel(new javax.swing.table.DefaultTableModel(

@@ -92,12 +92,10 @@ public class Panel_Opciones extends javax.swing.JPanel {
         jLabel5.setForeground(new java.awt.Color(116, 238, 255));
         jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/PalEfectos_38px.png"))); // NOI18N
 
-        checkBoxMusica.setForeground(new java.awt.Color(116, 238, 255));
         checkBoxMusica.setText("Silenciar Música");
         checkBoxMusica.setFont(new java.awt.Font("mononoki Nerd Font", 0, 18)); // NOI18N
 
         checkBoxEfectos.setBackground(new java.awt.Color(123, 50, 216));
-        checkBoxEfectos.setForeground(new java.awt.Color(116, 238, 255));
         checkBoxEfectos.setText("Silenciar Efectos");
         checkBoxEfectos.setFont(new java.awt.Font("mononoki Nerd Font", 0, 18)); // NOI18N
 
@@ -106,10 +104,9 @@ public class Panel_Opciones extends javax.swing.JPanel {
         panelBaseLayout.setHorizontalGroup(
             panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBaseLayout.createSequentialGroup()
-                .addContainerGap(96, Short.MAX_VALUE)
+                .addContainerGap(60, Short.MAX_VALUE)
                 .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel3)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 307, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                         .addGroup(panelBaseLayout.createSequentialGroup()
                             .addComponent(jLabel2)
@@ -123,8 +120,9 @@ public class Panel_Opciones extends javax.swing.JPanel {
                                 .addGroup(panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(checkBoxEfectos, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(checkBoxMusica, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                    .addComponent(jLabel5))
-                .addContainerGap(97, Short.MAX_VALUE))
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel1))
+                .addContainerGap(66, Short.MAX_VALUE))
         );
         panelBaseLayout.setVerticalGroup(
             panelBaseLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

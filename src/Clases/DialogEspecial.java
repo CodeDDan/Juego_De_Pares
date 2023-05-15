@@ -81,16 +81,16 @@ public class DialogEspecial extends JDialog{
         ImageIcon icon;
         switch (tipo) {
             case 1:
-                icon = new ImageIcon("src\\Iconos\\IconoWizard_200px.gif");
+                icon = new ImageIcon("src\\Iconos\\IconoCartaL_200px.gif");
                 break;
             case 2:
                 icon = new ImageIcon("src\\Iconos\\IconoWizardF_200px.gif");
                 break;
             case 3:
-                icon = new ImageIcon("src\\Iconos\\IconoWizardN_200px.gif");
+                icon = new ImageIcon("src\\Iconos\\IconoCartaF_200px.gif");
                 break;
             default:
-                icon = new ImageIcon("src\\Iconos\\IconoWizard_200px.gif");
+                icon = new ImageIcon("src\\Iconos\\IconoCartaL_200px.gif");
                 break;
         }
         // Refrescamos el gif
@@ -98,8 +98,8 @@ public class DialogEspecial extends JDialog{
         img.flush();
         animacion.setIcon(icon);
         PanelGradiente panel = new PanelGradiente();
-        panel.setColor1(new Color(20,10,58));
-        panel.setColor2(new Color(43,27,104));
+        panel.setColor1(new Color(239,50,217));
+        panel.setColor2(new Color(137,255,253));
         panel.setLayout(new FlowLayout(FlowLayout.CENTER, 40, 50));
         panel.add(animacion);
         panel.add(lblMensaje);
